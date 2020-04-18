@@ -389,3 +389,81 @@ Function(n):
 ```
 
 - Just O(n)
+
+## Time functions
+
+- Reference: Abdul Bari's Youtube
+  - https://youtu.be/w7t4_JUUTeg
+  - https://youtu.be/5v-tKX2uRAk
+
+### Types of time functions
+
+| function |             |
+| -------- | ----------- |
+| O(1)     | constant    |
+| O(log_n) | logarithmic |
+| O(n)     | linear      |
+| O(n^2)   | quadratic   |
+| O(n^3)   | cubic       |
+| O(m^n)   | exponential |
+
+### Compare time functinos
+
+1 < log_n < root(n) < n < nlogn < n^2 < n^3 < ... < 2^n < 3^n < n^n
+
+## Asymptotic Notations
+
+- References: Abdul Bari's Youtube
+  - https://youtu.be/A03oI0znAoc
+  - https://youtu.be/NI4OKSvGAgM
+
+- Big O: Uppder bound
+- Big Omega: Lower bound
+- Theta: Average bound
+
+### Big O
+
+- Definition
+  > The function f(n) = O(g(n)), if and only if there exists positive constant c and n_0 such that f(n) <= c*g(n) for all n >= n_0
+
+- When you write Big O, try to use the closest function
+
+### Big Omega
+
+- Definition
+  > The function f(n) = Omega(g(n)), if and only if there exists positive constant c and n_0 such that f(n) >= c*g(n) for all n >= n_0
+
+- When you write Big Omega, try to use the closest function
+
+### Theta
+
+- Definition
+  > The functionf f(n) = Theta(g(n)), if and only if there exists positive contants c-1, c_2 and n_0, such that c_1 * g(n) <= f(n) <= c_2 * g(n)
+
+- When ever you have any function and if you are able to represent it as theta annotation, that's better. If it i not possible, then consider Big O or Big Omega
+- Always theta is prefable if can find theta for any functions, this is better
+
+### Don't mix this concepts with best case & worst case
+
+- Big O is worst case? no
+- Big Omega is best case? no
+- We can use any notation for best case, any notation for worst case
+
+### Properteis of Asymptotic Notations
+
+- General Properties
+  - If f(n) is O(g(n)), then a * f(n) is also O(g(n))
+  - If f(n) is Omega(g(n)), then a * f(n) is also Omega(g(n))
+  - If f(n) is Theta(g(n)), then a * f(n) is also Theta(g(n))
+- Reflexive
+  - If f(n) is given, then f(n) is O(f(n))
+- Transitive
+  - If f(n) is O(g(n)) and g(n) is O(h(n)), then f(n) = O(h(n))
+- Symmetrics
+  - If f(n) is Theta(g(n)), then g(n) is Theta(f(n))
+    - Only for Theta
+- Transpose Symmetric
+  - If f(n) = O(g(n)), then g(n) is Omega(f(n))
+- If f(n) is O(g(n)) and f(n) is Omega(g(n)), then f(n) = Theta(g(n))
+- If f(n) is O(g(n)) and d(n) is O(e(n)), then f(n) + d(n) = O(max(g(n), e(n)))
+- If f(n) is O(g(n)) and d(n) is O(e(n)), then f(n) * d(n) = O(g(n) * e(n))
