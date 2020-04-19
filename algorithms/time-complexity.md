@@ -467,3 +467,105 @@ Function(n):
 - If f(n) is O(g(n)) and f(n) is Omega(g(n)), then f(n) = Theta(g(n))
 - If f(n) is O(g(n)) and d(n) is O(e(n)), then f(n) + d(n) = O(max(g(n), e(n)))
 - If f(n) is O(g(n)) and d(n) is O(e(n)), then f(n) * d(n) = O(g(n) * e(n))
+
+## Comparison of Functions
+
+- Reference: Abdul Bari's Youtube
+  - https://youtu.be/mwN18xfwNhk
+  - https://youtu.be/WlBBTSL0ZRc
+
+### How can I compare two functions
+
+#### Sample values
+
+- E.g. n^2 vs n^3
+  - => 2^2 vs 2^3, 3^2 vs 3^3, 4^2, 4^3,...
+
+#### Apply log on both sides
+
+- Basic functions on log
+  1. log_ab = log_a + log_b
+  2. log_(a/b) =  log_a - log_b
+  3. log_a^b = b * log_a
+  4. a^log_c_b = b^log_c_a
+  5. a^b = n, then b = log_a_n
+
+#### Examples 1
+
+- f(n) = n^2 * log_n, g(n) = n * (log_n)^10
+  - => Apply log
+  - => f(n) -> log_(n^2 * log_n), g(n) -> log(n * (log_n) ^ 10)
+  - => f(n) -> log_n^2 + log_(log_n), g(n) -> log_n + log_((log_n)^10)
+  - => f(n) -> 2 * log_n + log_(log_n), g(n) -> log_n + 10 * log_(log_n)
+- f(n) = 3 * n^(root(n)), g(n) = 2^(root(n) * log_2_n)
+  - => f(n) = 3 * n^(root(n)), g(n) = 2^(log_2_(n ^ root(n))) (by 3. above)
+  - => f(n) = 3 * n^(root(n)), g(n) = (n ^ root(n))^log_2_2 (by 4. above)
+  - => f(n) = 3 * n^(root(n)), g(n) = n^root(n)
+- f(n) = n^log_n, g(n) = 2^root(n)
+  - => Apply log
+  - => f(n) -> log_(n^log_n), g(n) -> log_(2 ^ root(n))
+  - => f(n) -> (log_n) * (log_n), g(n) -> root(n) * log_2_2 (by 3. above)
+  - => f(n) -> (log_n)^2, g(n) -> root(n)
+- f(n) = 2^log_n, g(n) = n^root(n)
+  - => Apply log
+  - => f(n) -> log_n * log_2_2, g(n) -> root(n) * log_n
+  - => f(n) -> log_n, g(n) -> root(n) * log_n
+
+#### Examples 2, True or False
+
+- (n + k)^m = Theta(n^m)
+  - => True
+- 2^(n+1) = O(2^n)
+  - => True
+- 2^2n = O(2^n)
+  - => False
+  - 2^2n = O(4^n)
+- root(log_n) = O(log_log_n)
+  - => False
+- n^log_n = O(2^n)
+  - => True
+
+## Best Worst and Average Case Analysis
+
+- Reference: Abdul Bari's Youtube
+  - https://youtu.be/lj3E24nnPjI
+
+### Linear Search
+
+- Best case
+  - Searching key element present at first index
+  - Time: 1 (Constant)
+- Worst case
+  - Searching key element present at last index or not exists
+  - Time: n
+- Average case
+  - What is Average case?
+    - => (All possible case time) / (# of cases)
+  - For linear search
+    - => (1 + 2 + 3 + ... n) / n
+    - => (n(n + 1) / 2) / n = (n + 1) / 2
+    - Time: (n + 1) / 2
+- Apply asymptotic notations
+  - Best case: B(n)
+    - Time: 1
+    - B(n) = 1
+    - B(n) = O(1)
+    - B(n) = Omega(1)
+    - B(n) = Theta(1)
+  - Worst case: W(n)
+    - Time: n
+    - W(n) = n
+    - W(n) = O(n)
+    - W(n) = Omega(n)
+    - W(n) = Theta(n)
+
+### Binary Search Tree
+
+- Best case
+  - Searching key element present at root
+  - Time: 1 (Constant)
+- Worst case
+  - Searching key element at leaf or not exists
+    - Time: height of tree
+      - min: log_n (height of tree on balanced binary search tree)
+      - max: n (height of tree on skewed binary search tree)
