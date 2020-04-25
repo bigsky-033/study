@@ -26,3 +26,19 @@
 | Peek      | O(1)            |
 | Search    | O(n)            |
 | Size      | O(1)            |
+
+### Stack Example - Brackets
+
+```
+Let S be a stack
+
+For bracket in bracket_string:
+    rev = getReversedBracket(bracket)
+
+    If isLeftBracket(bracket):
+        S.push(bracket)
+    Else If S.isEmpty() or S.pop() != rev:
+        return false
+
+return S.isEmpty()
+```
