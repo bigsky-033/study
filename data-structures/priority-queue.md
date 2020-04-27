@@ -4,6 +4,7 @@
   - [WilliamFiset] Priority Queue Introduction, https://youtu.be/wptevk0bshY
   - [WilliamFiset] Priority Queue Min Heaps and Max Heaps, https://youtu.be/HCEr35qpawQ
   - [WilliamFiset] Priority Queue Inserting Elements, https://youtu.be/QOJ-CmQiXko
+  - [WilliamFiset] Priority Queue Removing Elements, https://youtu.be/eVq8CmoC1x8
 
 ## Discussion & Examples of Priority Queue
 
@@ -66,10 +67,48 @@
 
 ## Binary heap Priority Queue Implementation Details
 
-### Heap sinking and swimming
+### Ways of Implementing a Priority Queue
 
-### Adding elements to Priority Queue
+- Priority Queues are usually implemented with heaps since this gives them the best possible time complexity.
+- The Priority Queue is an Abstract Data Type(ADT), hence heaps are not only way to implement PQs. As an example, we could use an unsorted list, but this would not give us the best possible time complexity.
+
+#### Binary Heap
+
+- A binary heap is a binary tree that supports that heap invariant. In a binary tree very node has exactly two children.
+- A complete binary tree is a tree in which at every level, except possibly the last is completely filled and all the nodes are as far left as possible.
+- Binary heap array
+  - Let i be the parent node index
+  - Left child index: 2i + 1
+  - Right child index: 2i + 2
+
+### Adding elements to Priprity Queue
+
+- Add at last and trying to satisfy heap invariant.
+  - Compare with parent & if parent is bigger(for mean heap), swap it.
 
 ### Removing (polling) elements from Priority Queue
 
-## Code Implementation
+- Poll: Swap last node & root node & trying to satisfy heap invariant.
+  - Complexity: O(log(n))
+  - Look both children & swap with smaller one. Repeat this until satisfy heap invariant.
+- Remove some node - simple
+  - Complexity: O(n)
+  - Search target value
+  - Swap with last node
+  - Satisfy heap invariant
+
+#### Removing elements from binary heap in O(log(n))
+
+- The inefficiency of the removal algorithm comes from the fact that we have to perform a linear search to find out where an element is index at. What if instead we did a lookup using a `Hashtable` to find out where a node is indexed at?
+- A hashtable provides a constant time lookup and update for a mapping from a key to a value.
+
+- Caveat: What if there are two or more nodes with the same value? What problems would that cause?
+  - Dealing with the multiuple value problem:
+    - Instead of mapping one value to one position we will map one value to multuple positions. We can maintain a `Set` or `TreeSet` of indexes for which a particular node value maps to.
+- Question: If we want to remove a repeated node in our heap, which node do we remove and does it matter which one we pick?
+  - Answer: No it doesn't matter which node we remove as long as we satisfy the heap invariant in the end.
+
+### Heap sinking and swimming
+
+- To satisfy heap invariant, after inserting node at last & sinking & swimming.
+- Bubbling up & down
