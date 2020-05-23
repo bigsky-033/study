@@ -7,6 +7,8 @@
 - https://www.dynatrace.com/resources/ebooks/javabook/
   - `Memory Management` chapter
 - Java Garbage Collection Basics, https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
+- 스레드 덤프 분석하기, https://d2.naver.com/helloworld/10963
+- Thread Dump 분석하기, https://brunch.co.kr/@springboot/126
 
 ## Async
 
