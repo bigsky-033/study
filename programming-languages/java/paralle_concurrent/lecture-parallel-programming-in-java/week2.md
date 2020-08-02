@@ -2,7 +2,7 @@
 
 Notes for `Parallel Programming in Java` class in Coursera.
 
-- https://www.coursera.org/learn/parallel-programming-in-java
+- <https://www.coursera.org/learn/parallel-programming-in-java>
 
 ## 2.1 Futures: Tasks with Return Values
 
@@ -14,7 +14,7 @@ Notes for `Parallel Programming in Java` class in Coursera.
 
 ### Readings for 2.1
 
-- Futures and promises, https://en.wikipedia.org/wiki/Futures_and_promises
+- Futures and promises, <https://en.wikipedia.org/wiki/Futures_and_promises>
 
 ## 2.2 Futures in Java's Fork/Join Framework
 
@@ -32,7 +32,7 @@ Notes for `Parallel Programming in Java` class in Coursera.
 
 ### Readings for 2.3
 
-- Memoization, https://en.wikipedia.org/wiki/Memoization
+- Memoization, <https://en.wikipedia.org/wiki/Memoization>
 
 ## 2.4 Java Streams
 
@@ -40,9 +40,9 @@ From the view point of `Parallel Programming in Java`, an important benefit of u
 
 ### Readings for 2.4
 
-- Article on "Processing Data with Java SE 8 Streams", https://www.oracle.com/technical-resources/articles/java/ma14-java-se-8-streams.html
-- Tutorial on specifying Aggregate Operations using Java streams, https://docs.oracle.com/javase/tutorial/collections/streams/
-- Documentation on java.util.stream.Collectors class for performing reductions on streams, https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
+- Article on "Processing Data with Java SE 8 Streams", <https://www.oracle.com/technical-resources/articles/java/ma14-java-se-8-streams.html>
+- Tutorial on specifying Aggregate Operations using Java streams, <https://docs.oracle.com/javase/tutorial/collections/streams/>
+- Documentation on java.util.stream.Collectors class for performing reductions on streams, <https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html>
 
 ## 2.5 Data Races and Determinism
 

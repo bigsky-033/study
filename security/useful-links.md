@@ -2,4 +2,4 @@
 
 ## OpenID Connect
 
-- OpenID Connect explained, https://connect2id.com/learn/openid-connect
+- OpenID Connect explained, <https://connect2id.com/learn/openid-connect>

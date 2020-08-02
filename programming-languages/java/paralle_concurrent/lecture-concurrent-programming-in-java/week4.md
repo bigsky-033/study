@@ -20,8 +20,8 @@ Notes for `Concurrent Programming in Java` class in Coursera.
 
 ### Readings for 4.1
 
-- Optimistic concurrency control, https://en.wikipedia.org/wiki/Optimistic_concurrency_control
-- Atomic Integer, https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicInteger.html
+- Optimistic concurrency control, <https://en.wikipedia.org/wiki/Optimistic_concurrency_control>
+- Atomic Integer, <https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicInteger.html>
 
 ## 4.2 Concurrenct Queue
 
@@ -30,8 +30,8 @@ Notes for `Concurrent Programming in Java` class in Coursera.
 
 ### Readings for 4.2
 
-- Atomic Reference, https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicReference.html
-- Concurrent Linked Queue, https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html
+- Atomic Reference, <https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicReference.html>
+- Concurrent Linked Queue, <https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html>
 
 ## 4.3 Linearizability
 
@@ -40,17 +40,17 @@ Notes for `Concurrent Programming in Java` class in Coursera.
 
 ### Readings for 4.3
 
-- Linearizability, https://en.wikipedia.org/wiki/Linearizability
+- Linearizability, <https://en.wikipedia.org/wiki/Linearizability>
 
 ## 4.4 Concurrent Hash Map
 
 ### Readings for 4.4
 
-- Concurrent Hash Map, https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentHashMap.html
-- Java ConcurrentMap, https://en.wikipedia.org/wiki/Java_ConcurrentMap
+- Concurrent Hash Map, <https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentHashMap.html>
+- Java ConcurrentMap, <https://en.wikipedia.org/wiki/Java_ConcurrentMap>
 
 ## 4.5 Concurrent Minimum Spanning Tree Algorithm
 
 ### Readings for 4.5
 
-- Borůvka's algorithm, https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
+- Borůvka's algorithm, <https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm>

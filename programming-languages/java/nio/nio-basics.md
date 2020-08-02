@@ -57,9 +57,9 @@
 
 ## References
 
-- Java Nio Tutorial for Beginners, https://examples.javacodegeeks.com/core-java/nio/java-nio-tutorial-beginners/
-- Buffer, https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/nio/Buffer.html
-- Selector, https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/nio/channels/Selector.html
-- [NIO] JAVA NIO의 ByteBuffer와 Channel로 File Handling에서 더 좋은 Perfermance 내기!, https://palpit.tistory.com/641
-- [NIO] JAVA NIO의 ByteBuffer와 Channel 클래스 사용하기!, http://eincs.com/2009/08/java-nio-bytebuffer-channel/
-- 직접 메모리 접근, https://ko.wikipedia.org/wiki/%EC%A7%81%EC%A0%91_%EB%A9%94%EB%AA%A8%EB%A6%AC_%EC%A0%91%EA%B7%BC
+- Java Nio Tutorial for Beginners, <https://examples.javacodegeeks.com/core-java/nio/java-nio-tutorial-beginners/>
+- Buffer, <https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/nio/Buffer.html>
+- Selector, <https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/nio/channels/Selector.html>
+- [NIO] JAVA NIO의 ByteBuffer와 Channel로 File Handling에서 더 좋은 Perfermance 내기!, <https://palpit.tistory.com/641>
+- [NIO] JAVA NIO의 ByteBuffer와 Channel 클래스 사용하기!, <http://eincs.com/2009/08/java-nio-bytebuffer-channel/>
+- 직접 메모리 접근, <https://ko.wikipedia.org/wiki/%EC%A7%81%EC%A0%91_%EB%A9%94%EB%AA%A8%EB%A6%AC_%EC%A0%91%EA%B7%BC>

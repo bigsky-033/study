@@ -2,7 +2,7 @@
 
 Notes for `Concurrent Programming in Java` class in Coursera.
 
-- https://www.coursera.org/learn/concurrent-programming-in-java
+- <https://www.coursera.org/learn/concurrent-programming-in-java>
 
 ## 1.1 Threads
 
@@ -10,9 +10,9 @@ Learn about basics of `Thread`.
 
 ### Readings for 1.1
 
-- Threads, https://en.wikipedia.org/wiki/Thread_(computing)
-- Tutorial on Java threads, https://docs.oracle.com/javase/tutorial/essential/concurrency/runthread.html
-- Documentation on Thread class in Java 8, https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html
+- Threads, <https://en.wikipedia.org/wiki/Thread_(computing)>
+- Tutorial on Java threads, <https://docs.oracle.com/javase/tutorial/essential/concurrency/runthread.html>
+- Documentation on Thread class in Java 8, <https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html>
 
 ## 1.2 Structured Locks
 
@@ -23,9 +23,9 @@ Learn about basics of `Thread`.
 
 ### Readings for 1.2
 
-- Tutorial on Intrinsic Locks and Synchronization in Java, https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html
-- Tutorial on Guarded Blocks in Java, https://docs.oracle.com/javase/tutorial/essential/concurrency/guardmeth.html
-- Monitor (synchronization), https://en.wikipedia.org/wiki/Monitor_(synchronization)
+- Tutorial on Intrinsic Locks and Synchronization in Java, <https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html>
+- Tutorial on Guarded Blocks in Java, <https://docs.oracle.com/javase/tutorial/essential/concurrency/guardmeth.html>
+- Monitor (synchronization), <https://en.wikipedia.org/wiki/Monitor_(synchronization)>
 
 ## 1.3 Unstructured Locks
 
@@ -37,8 +37,8 @@ Learn about basics of `Thread`.
 
 ### Readings for 1.3
 
-- Tutorial on Lock Objects in Java, https://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html
-- Documentation on Java’s Lock interfaces, https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Lock.html
+- Tutorial on Lock Objects in Java, <https://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html>
+- Documentation on Java’s Lock interfaces, <https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Lock.html>
 
 ## 1.4 Liveness
 
@@ -49,9 +49,9 @@ Learn about basics of `Thread`.
 
 ### Readings for 1.4
 
-- Deadlock example with synchronized methods in Java, https://docs.oracle.com/javase/tutorial/essential/concurrency/deadlock.html
-- Starvation and Livelock examples in Java, https://docs.oracle.com/javase/tutorial/essential/concurrency/starvelive.html
-- Deadlock and Livelock, https://en.wikipedia.org/wiki/Deadlock
+- Deadlock example with synchronized methods in Java, <https://docs.oracle.com/javase/tutorial/essential/concurrency/deadlock.html>
+- Starvation and Livelock examples in Java, <https://docs.oracle.com/javase/tutorial/essential/concurrency/starvelive.html>
+- Deadlock and Livelock, <https://en.wikipedia.org/wiki/Deadlock>
 
 ## 1.5 Dining Philosophers
 
@@ -60,4 +60,4 @@ Learn about basics of `Thread`.
 
 ### Readings for 1.5
 
-- Dining Philosophers Problem, https://en.wikipedia.org/wiki/Dining_philosophers_problem
+- Dining Philosophers Problem, <https://en.wikipedia.org/wiki/Dining_philosophers_problem>

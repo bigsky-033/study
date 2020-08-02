@@ -2,7 +2,7 @@
 
 Notes for `Parallel Programming in Java` class in Coursera.
 
-- https://www.coursera.org/learn/parallel-programming-in-java
+- <https://www.coursera.org/learn/parallel-programming-in-java>
 
 ## 4.1 Split-phase Barriers with Java Phasers
 
@@ -13,7 +13,7 @@ Notes for `Parallel Programming in Java` class in Coursera.
 
 ### Readings for 4.1
 
-- Documentation on Java’s Phaser class, https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Phaser.html
+- Documentation on Java’s Phaser class, <https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Phaser.html>
 
 ## 4.2 Point-to-Point Synchronization with Phasers
 
@@ -60,7 +60,7 @@ while (there is an input to be processed) {
 
 ### Readings for 4.4
 
-- Pipeline (computing), https://en.wikipedia.org/wiki/Pipeline_(computing)
+- Pipeline (computing), <https://en.wikipedia.org/wiki/Pipeline_(computing)>
 
 ## 4.5 Data Flow Parallelism
 
@@ -68,4 +68,4 @@ while (there is an input to be processed) {
 
 - Data flow parallelism model is, to specify parallel program as computation graph.
 
-- Data flow diagram, https://en.wikipedia.org/wiki/Data-flow_diagram
+- Data flow diagram, <https://en.wikipedia.org/wiki/Data-flow_diagram>

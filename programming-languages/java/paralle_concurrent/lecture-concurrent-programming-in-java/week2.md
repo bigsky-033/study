@@ -2,7 +2,7 @@
 
 Notes for `Concurrent Programming in Java` class in Coursera.
 
-- https://www.coursera.org/learn/concurrent-programming-in-java
+- <https://www.coursera.org/learn/concurrent-programming-in-java>
 
 ## 2.1 Critical Sections
 
@@ -10,8 +10,8 @@ Notes for `Concurrent Programming in Java` class in Coursera.
 
 ### Readings for 2.1
 
-- Critical section, https://en.wikipedia.org/wiki/Critical_section
-- Atomicity, https://en.wikipedia.org/wiki/Atomicity_(database_systems)
+- Critical section, <https://en.wikipedia.org/wiki/Critical_section>
+- Atomicity, <https://en.wikipedia.org/wiki/Atomicity_(database_systems)>
 
 ## 2.2 Object Based Isolation (Monitors)
 
@@ -21,13 +21,13 @@ Notes for `Concurrent Programming in Java` class in Coursera.
 
 ### Readings for 2.2
 
-- Monitor, https://en.wikipedia.org/wiki/Monitor_(synchronization)
+- Monitor, <https://en.wikipedia.org/wiki/Monitor_(synchronization)>
 
 ## 2.3 Concurrent Spanning Tree Algorithm
 
 ### Readings for 2.3
 
-- Spanning Tree, https://en.wikipedia.org/wiki/Spanning_tree
+- Spanning Tree, <https://en.wikipedia.org/wiki/Spanning_tree>
 
 ## 2.4 Atomic Variables
 
@@ -52,9 +52,9 @@ isolated(cur) {
 
 ### Readings for 2.4
 
-- Tutorial on Atomic Integers in Java, https://docs.oracle.com/javase/tutorial/essential/concurrency/atomicvars.html
-- Java theory and practice Going atomic, https://www.ibm.com/developerworks/library/j-jtp11234/
-- Primitive wrapper class in Java, https://en.wikipedia.org/wiki/Primitive_wrapper_class_in_Java#Atomic_wrapper_classes
+- Tutorial on Atomic Integers in Java, <https://docs.oracle.com/javase/tutorial/essential/concurrency/atomicvars.html>
+- Java theory and practice Going atomic, <https://www.ibm.com/developerworks/library/j-jtp11234/>
+- Primitive wrapper class in Java, <https://en.wikipedia.org/wiki/Primitive_wrapper_class_in_Java#Atomic_wrapper_classes>
 
 ## 2.5 Read, Write Isolation
 
@@ -63,4 +63,4 @@ isolated(cur) {
 
 ### Readings for 2.5
 
-- Readers-writer lock, https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock
+- Readers-writer lock, <https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock>

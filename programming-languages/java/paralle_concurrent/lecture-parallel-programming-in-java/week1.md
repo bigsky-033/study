@@ -2,7 +2,7 @@
 
 Notes for `Parallel Programming in Java` class in Coursera.
 
-- https://www.coursera.org/learn/parallel-programming-in-java
+- <https://www.coursera.org/learn/parallel-programming-in-java>
 
 ## 1.1 Task Creation and Termination (Async, Finish)
 
@@ -19,14 +19,14 @@ S3; // combine the two partial sums after both S1 and S2 have finished
 
 ### Readings for 1.1
 
-- Asynchronous method invocation, https://en.wikipedia.org/wiki/Asynchronous_method_invocation
+- Asynchronous method invocation, <https://en.wikipedia.org/wiki/Asynchronous_method_invocation>
 
 ## 1.2 Creating Tasks in Java's Fork/Join Framework
 
 ### Readings for 1.2
 
-- Tutorial on Java’s Fork/Join framework, https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html
-- Documentation on Java’s RecursiveAction class, https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/RecursiveAction.html
+- Tutorial on Java’s Fork/Join framework, <https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html>
+- Documentation on Java’s RecursiveAction class, <https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/RecursiveAction.html>
 
 ## 1.3 Computation Graphs, Work, Span, Ideal Parallelism
 
@@ -49,8 +49,8 @@ S3; // combine the two partial sums after both S1 and S2 have finished
 
 ### Readings for 1.3
 
-- Partailly ordered set, https://en.wikipedia.org/wiki/Partially_ordered_set
-- Analysis of parallel algorithms, https://en.wikipedia.org/wiki/Analysis_of_parallel_algorithms
+- Partailly ordered set, <https://en.wikipedia.org/wiki/Partially_ordered_set>
+- Analysis of parallel algorithms, <https://en.wikipedia.org/wiki/Analysis_of_parallel_algorithms>
 
 ## 1.4 Multiprocessor Scheduling, Parallel Speedup
 
@@ -68,4 +68,4 @@ S3; // combine the two partial sums after both S1 and S2 have finished
 
 ### Readings for 1.5
 
-- Amdahl's law, https://en.wikipedia.org/wiki/Amdahl%27s_law#Speedup_in_a_serial_program
+- Amdahl's law, <https://en.wikipedia.org/wiki/Amdahl%27s_law#Speedup_in_a_serial_program>

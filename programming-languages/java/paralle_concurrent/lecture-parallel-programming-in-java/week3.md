@@ -2,7 +2,7 @@
 
 Notes for `Parallel Programming in Java` class in Coursera.
 
-- https://www.coursera.org/learn/parallel-programming-in-java
+- <https://www.coursera.org/learn/parallel-programming-in-java>
 
 ## 3.1 Parallel Loops
 
@@ -27,7 +27,7 @@ a = IntStream.rangeClosed(0, N-1).parallel().toArray(i -> b[i] + c[i]);
 
 ### Readings for 3.1
 
-- Tutorial on Executing Streams in Parallel, https://docs.oracle.com/javase/tutorial/collections/streams/parallelism.html#executing_streams_in_parallel
+- Tutorial on Executing Streams in Parallel, <https://docs.oracle.com/javase/tutorial/collections/streams/parallelism.html#executing_streams_in_parallel>
 
 ## 3.2 Parallel Matrix Multiplication
 
@@ -49,7 +49,7 @@ for (i : [0:n-1]) {
 
 ### Readings for 3.2
 
-- Matrix multiplication algorithm, https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm
+- Matrix multiplication algorithm, <https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm>
 
 ## 3.3 Barriers in Parallel Loops
 
@@ -59,7 +59,7 @@ Barriers extend a parallel loop by dividing its execution into a sequence of *ph
 
 ### Readings for 3.3
 
-- Stencil codes, https://en.wikipedia.org/wiki/Stencil_code
+- Stencil codes, <https://en.wikipedia.org/wiki/Stencil_code>
 
 ## 3.5 Iteration Grouping / Chunking in Parallel Loops
 

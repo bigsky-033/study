@@ -14,14 +14,14 @@ Notes for `Concurrent Programming in Java` class in Coursera.
 
 ### Readings for 3.1
 
-- Actor Model, https://en.wikipedia.org/wiki/Actor_model
-- Akka Actor Library, https://doc.akka.io/docs/akka/current/typed/guide/index.html?language=java
+- Actor Model, <https://en.wikipedia.org/wiki/Actor_model>
+- Akka Actor Library, <https://doc.akka.io/docs/akka/current/typed/guide/index.html?language=java>
 
 ## 3.2 Actors Examples
 
 ### Readings for 3.2
 
-- Pipeline Parallelism, https://en.wikipedia.org/wiki/Pipeline_(computing)
+- Pipeline Parallelism, <https://en.wikipedia.org/wiki/Pipeline_(computing)>
 
 ## 3.3 Sieve of Eratosthenes Algorithm
 
@@ -46,7 +46,7 @@ public void process(final Object msg) {
 
 ### Readings for 3.3
 
-- Sieve of Eratosthenes problem, https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+- Sieve of Eratosthenes problem, <https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>
 
 ## 3.4 Producer-Consumer Problem
 
@@ -74,4 +74,4 @@ public void process(final Object msg) {
 
 ### Readings for 3.5
 
-- Producer-consumer problem, https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem
+- Producer-consumer problem, <https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem>
