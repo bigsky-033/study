@@ -5,17 +5,17 @@ package main
 /**
  * Definition for singly-linked list.
  */
-type ListNode struct {
+type ListNodeForP00448 struct {
 	Val  int
-	Next *ListNode
+	Next *ListNodeForP00448
 }
 
-func reverseList(head *ListNode) *ListNode {
+func reverseList(head *ListNodeForP00448) *ListNodeForP00448 {
 	return reverseListRecursive(head)
 }
 
-func reverseListIterative(head *ListNode) *ListNode {
-	var prev *ListNode
+func reverseListIterative(head *ListNodeForP00448) *ListNodeForP00448 {
+	var prev *ListNodeForP00448
 	cur := head
 	for cur != nil {
 		next := cur.Next
@@ -26,7 +26,7 @@ func reverseListIterative(head *ListNode) *ListNode {
 	return prev
 }
 
-func reverseListRecursive(head *ListNode) *ListNode {
+func reverseListRecursive(head *ListNodeForP00448) *ListNodeForP00448 {
 	if head == nil || head.Next == nil {
 		return head
 	}
