@@ -4,17 +4,19 @@ package main
 // Good to read: https://leetcode.com/problems/binary-search/discuss/423162/Binary-Search-101
 
 func search(nums []int, target int) int {
-	left, right := 0, len(nums)-1
+	lo, hi := 0, len(nums)-1
 
-	for left <= right {
-		mid := left + (right-left)/2
-		if nums[mid] == target {
-			return mid
-		} else if target < nums[mid] {
-			right = mid - 1
+	for lo < hi {
+		mid := lo + (hi-lo+1)/2
+		if target < nums[mid] {
+			hi = mid - 1
 		} else {
-			left = mid + 1
+			lo = mid
 		}
 	}
-	return -1
+	if nums[lo] == target {
+		return lo
+	} else {
+		return -1
+	}
 }
