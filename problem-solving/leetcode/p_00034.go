@@ -11,22 +11,31 @@ func searchRange(nums []int, target int) []int {
 		return []int{-1, -1}
 	}
 
-	idx := binarySearch(nums, target)
-	if idx == -1 {
+	lo := binarySearchForLo(nums, target, 0, len(nums)-1)
+	if lo == -1 {
 		return []int{-1, -1}
 	}
-	lo, hi := idx, idx
-
-	for ; lo >= 0; lo-- {
-		if lo-1 < 0 || nums[lo-1] != target {
-			break
-		}
-	}
+	hi := binarySearchForHi(nums, target, lo, len(nums)-1)
 	return []int{lo, hi}
 }
 
-func binarySearch(nums []int, target int) int {
-	lo, hi := 0, len(nums)-1
+func binarySearchForLo(nums []int, target int, lo int, hi int) int {
+	for lo < hi {
+		mid := lo + (hi-lo)/2
+		if target > nums[mid] {
+			lo = mid + 1
+		} else {
+			hi = mid
+		}
+	}
+	if nums[lo] == target {
+		return lo
+	} else {
+		return -1
+	}
+}
+
+func binarySearchForHi(nums []int, target int, lo int, hi int) int {
 	for lo < hi {
 		mid := lo + (hi-lo+1)/2
 		if target < nums[mid] {
