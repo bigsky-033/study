@@ -19,12 +19,14 @@ func searchRange(nums []int, target int) []int {
 	return []int{lo, hi}
 }
 
+// To find left most target, use left/lower binary search
 func binarySearchForLo(nums []int, target int, lo int, hi int) int {
 	for lo < hi {
 		mid := lo + (hi-lo)/2
 		if target > nums[mid] {
 			lo = mid + 1
 		} else {
+			// target is less than or equal to nums[mid]
 			hi = mid
 		}
 	}
@@ -35,12 +37,14 @@ func binarySearchForLo(nums []int, target int, lo int, hi int) int {
 	}
 }
 
+// To find right most element, use right/upper binary search
 func binarySearchForHi(nums []int, target int, lo int, hi int) int {
 	for lo < hi {
 		mid := lo + (hi-lo+1)/2
 		if target < nums[mid] {
 			hi = mid - 1
 		} else {
+			// target greater or equal to nums[mid]
 			lo = mid
 		}
 	}
