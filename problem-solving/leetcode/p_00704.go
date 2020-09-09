@@ -33,13 +33,6 @@ func search(nums []int, target int) int {
 		} else {
 			lo = mid
 		}
-
-		if target > nums[mid] {
-			lo = mid + 1
-		} else {
-			hi = mid
-		}
-
 	}
 	if nums[lo] == target {
 		return lo
