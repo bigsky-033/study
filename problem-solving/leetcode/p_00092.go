@@ -5,16 +5,16 @@ package main
 /**
  * Definition for singly-linked list.
  */
-type ListNodeForP00092 struct {
+type ListNode struct {
 	Val  int
-	Next *ListNodeForP00092
+	Next *ListNode
 }
 
-func reverseBetween(head *ListNodeForP00092, m int, n int) *ListNodeForP00092 {
+func reverseBetween(head *ListNode, m int, n int) *ListNode {
 	if head == nil || head.Next == nil || m == n {
 		return head
 	}
-	dummy := new(ListNodeForP00092)
+	dummy := new(ListNode)
 	dummy.Next = head
 	prev := dummy
 	for i := 0; i < m-1; i++ {
@@ -24,11 +24,11 @@ func reverseBetween(head *ListNodeForP00092, m int, n int) *ListNodeForP00092 {
 	return dummy.Next
 }
 
-func doReverseBetween(head *ListNodeForP00092, m int, n int) *ListNodeForP00092 {
+func doReverseBetween(head *ListNode, m int, n int) *ListNode {
 	if head == nil || head.Next == nil || m == n {
 		return head
 	}
-	prev, curr, next := new(ListNodeForP00092), head, new(ListNodeForP00092)
+	prev, curr, next := new(ListNode), head, new(ListNode)
 	for i := 0; i < n-m+1; i++ {
 		next = curr.Next
 		curr.Next = prev

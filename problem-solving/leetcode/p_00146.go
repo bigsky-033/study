@@ -2,28 +2,28 @@ package main
 
 // 146. LRU Cache, https://leetcode.com/problems/lru-cache/
 
-type ListNodeForP00146 struct {
+type ListNode struct {
 	Key  int
 	Val  int
-	Prev *ListNodeForP00146
-	Next *ListNodeForP00146
+	Prev *ListNode
+	Next *ListNode
 }
 
 type LRUCache struct {
-	storage  map[int]*ListNodeForP00146
+	storage  map[int]*ListNode
 	capacity int
-	head     *ListNodeForP00146
-	tail     *ListNodeForP00146
+	head     *ListNode
+	tail     *ListNode
 }
 
 func Constructor(capacity int) LRUCache {
-	head := new(ListNodeForP00146)
-	tail := new(ListNodeForP00146)
+	head := new(ListNode)
+	tail := new(ListNode)
 	head.Next = tail
 	tail.Prev = head
 
 	return LRUCache{
-		storage:  make(map[int]*ListNodeForP00146),
+		storage:  make(map[int]*ListNode),
 		capacity: capacity,
 		head:     head,
 		tail:     tail,
@@ -51,18 +51,18 @@ func (l *LRUCache) Put(key int, value int) {
 			delete(l.storage, l.tail.Prev.Key)
 			l.remove(l.tail.Prev)
 		}
-		newNode := &ListNodeForP00146{Key: key, Val: value}
+		newNode := &ListNode{Key: key, Val: value}
 		l.insertToHead(newNode)
 		l.storage[key] = newNode
 	}
 }
 
-func (l *LRUCache) remove(node *ListNodeForP00146) {
+func (l *LRUCache) remove(node *ListNode) {
 	node.Prev.Next = node.Next
 	node.Next.Prev = node.Prev
 }
 
-func (l *LRUCache) insertToHead(node *ListNodeForP00146) {
+func (l *LRUCache) insertToHead(node *ListNode) {
 	headNext := l.head.Next
 	l.head.Next = node
 	headNext.Prev = node
