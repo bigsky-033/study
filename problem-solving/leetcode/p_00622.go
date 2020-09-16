@@ -29,7 +29,6 @@ func (q *MyCircularQueue) EnQueue(value int) bool {
 	q.array[q.tail] = value
 	q.tail = (q.tail + 1) % q.capacity
 	q.size++
-	fmt.Println(q.tail)
 	return true
 }
 
