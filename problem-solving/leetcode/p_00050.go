@@ -1,16 +1,10 @@
 package main
 
-import "math"
-
 // 50. Pow(x, n), https://leetcode.com/problems/powx-n/
 
 func myPow(x float64, n int) float64 {
 	if n == 0 {
 		return 1
-	}
-	if n == math.MinInt32 {
-		x = x * x
-		n = n / 2
 	}
 	if n < 0 {
 		n = -n
