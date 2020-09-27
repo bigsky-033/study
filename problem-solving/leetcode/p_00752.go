@@ -1,5 +1,7 @@
 package main
 
+// 752. Open the Lock, https://leetcode.com/problems/open-the-lock/
+
 import "strconv"
 
 func openLock(deadends []string, target string) int {

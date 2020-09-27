@@ -1,5 +1,7 @@
 package main
 
+// 35. Search Insert Position, https://leetcode.com/problems/search-insert-position/
+
 func searchInsert(nums []int, target int) int {
 	left, right := 0, len(nums)-1
 	for left < right {

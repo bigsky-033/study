@@ -1,5 +1,7 @@
 package main
 
+// 779. K-th Symbol in Grammar, https://leetcode.com/problems/k-th-symbol-in-grammar/
+
 func kthGrammar(N int, K int) int {
 	if N == 1 && K == 1 {
 		return 0

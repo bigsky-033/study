@@ -1,8 +1,8 @@
 package main
 
-import "math"
-
 // 1299. Replace Elements with Greatest Element on Right Side, https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+
+import "math"
 
 func replaceElements(arr []int) []int {
 	max := math.MinInt32

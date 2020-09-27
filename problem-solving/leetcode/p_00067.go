@@ -1,11 +1,11 @@
 package main
 
+// 67. Add Binary, https://leetcode.com/problems/add-binary/
+
 import (
 	"strconv"
 	"strings"
 )
-
-// 67. Add Binary, https://leetcode.com/problems/add-binary/
 
 func addBinary(a string, b string) string {
 	carry := 0
