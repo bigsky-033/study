@@ -13,6 +13,7 @@ func topKFrequent(nums []int, k int) []int {
 			countByNumber[num] = 1
 		}
 	}
+
 	inverted := make(map[int][]int)
 	for n, c := range countByNumber {
 		if val, ok := inverted[c]; ok {
@@ -21,6 +22,7 @@ func topKFrequent(nums []int, k int) []int {
 			inverted[c] = []int{n}
 		}
 	}
+
 	var counts []int
 	for cnt := range inverted {
 		counts = append(counts, cnt)
