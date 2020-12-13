@@ -140,7 +140,7 @@ int main(void)
 ```c
 #include <stdio.h>
 
-float divid(int op1, int op2)
+float divide(int op1, int op2)
 {
     printf("%d / %d = ", op1, op2);
     return op1 / (float) op2;
@@ -195,7 +195,112 @@ int main(void)
 
 ## 평가 순서를 강제하는 연산자
 
+- sequence point, <https://en.wikipedia.org/wiki/Sequence_point> 에 대해 읽어보도록 하자.
+- short circuit 평가도 평가 순서를 강제하는 연산자 중 하나이다.
+  - 논리 연산자 &&와 ||는 평가 순서를 강제하는 연산자이다.
+  - 왼쪽 피연산자의 평가만으로 오른쪽 피연산자를 평가 안 할 수 있다.
+- 정리하자면, 한 줄에 있는 여러 피연산자들은 기본적으로 평가 순서가 보장 안 된다고 생각하자.
+  - short circuit, 삼항 연산자 정도만 예외적으로 알아두자.
+
 ## 범위(scope)
+
+- 블록 범위
+  - 중괄호({}) 안에 선언한 것들은 그 블록 안에서만 사용 가능하다.
+  - 블록 안에 또 다른 블록을 넣을 수도 있다. 그러면 안쪽 블록은 바깥 블록에는 접근이 가능하지만 그 반대는 안 된다.
+    - c에서는 변수 선언 위치의 제약 때문에 블록이 조금 특별한 의미를 갖는다. 아래의 예를 보자.
+
+    ```c
+    int main(void)
+    {
+        int num1 = 10;
+        printf("num: %d\n", num1);
+
+        {
+            /* c에서는 변수 선언 위치에 제약이 있다. 이렇게 블록 안에서 선언하면 괜찮다. */
+            int num2 = 100;
+            int result = num1 + num2;
+            printf("result: %d\n", result);
+        }
+
+        /* num2, result 접근 못 함 */
+    }
+
+    ```
+
+  - 변수 이름 가리기(variable shadowing) 금지. 가독성 뿐만 아니라 버그를 만들 가능성이 높다. 변수 이름 가리기는 블록 안에서 블록 밖에 있는 변수와 같은 이름의 변수를 선언하고 사용하는 것을 말한다.
+
+  ```c
+  /* 안 좋은 코드 */
+  int main(void)
+  {
+      int num = 0;
+      printf("%d", num);
+      {
+          int num = 1; /* variable shadowing */
+          printf("%d", num);
+      }
+
+      return 0;
+  }
+
+  ```
+
+- 파일 범위
+  - 어떤 블록이나 매개 변수 목록에도 안 속하고 파일 안에 있는 것을 말한다.
+  - 엄밀하게 말하면 translation unit이다. 이것에 대해서는 나중에 더 배울 것이다.
+
+  ```c
+  # include <stdio.h>
+
+  /*  파일 범위 */
+  static int s_num = 1024;
+
+  int add(int op1, int op2);
+
+  int main(void)
+  {
+      s_num = add(10, 30);
+
+      return 0;
+  }
+  ```
+
+  - 파일 범위에 있는 변수는,
+    - 다른 소스코드 파일에서 링크 가능
+    - 프로그램 실행 동안 공간을 차지한다.
+      - 즉, 스택 메모리에 들어가는 것이 아니다.
+      - 데이터 섹션에 들어간다.
+  - 이게 바로 전역 변수이다.
+- 함수 범위
+  - 유일한 예: 레이블(label)
+  - goto 같은 데서 쓰는 것이다.
+  - 함수 안에서 선언된 레이블은 함수 어디에서라도 접근 가능하다.
+  
+  ```c
+  int main(int argc, char** argv)
+  {
+      if (argc != 3) {
+        goto exit;
+      }
+
+      printf("You have 3 arguments!");
+  
+  exit:
+      return 0;
+  }
+  ```
+
+- 함수 선언 범위
+  - 함수 선언의 매개 변수 목록에 있는 것은 그 목록 안에서 접근이 가능하다.
+  - 많이 쓰일 일은 없지만 알아두자.
+
+  ```c
+  /* 괜찮은 예제들 */
+  void so_something(
+      double value,   /* 함수 선언 범위 */
+      char array[10 * sizeof(value)] /* value는 첫 번째 매개변수 */
+  )
+  ```
 
 ## const 키워드
 
