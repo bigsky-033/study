@@ -12,6 +12,7 @@ out=$(date +%s)
 exit_code=$?
 if [ $exit_code -eq 1 ]; then
     echo "[ERROR] Error happens during compile $1"
+    exit $exit_code
 else
     echo "[INFO] Execute $1"
     echo ""
