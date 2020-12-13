@@ -98,9 +98,100 @@ int main(void)
 
 ## 함수 매개변수 평가 순서, 피연산자 평가 순서
 
-## 연산자 우선순위와 평가 순서 1
+- 실수할 가능성이 높은 부분이다. 주의해서 보도록 하자.
 
-## 연산자 우선순위와 평가 순서 2
+```c
+#include <stdio.h>
+
+int add(int op1, int op2)
+{
+    printf("add()\n");
+    return op1 + op2;
+}
+
+int subtract(int op1, int op2)
+{
+    printf("subtract()\n");
+    return op1 - op2;
+}
+
+int main(void)
+{
+    int num1 = 128;
+    int num2 = 256;
+
+    printf("%d, %d\n", add(num1, num2), subtract(num1, num2));
+
+    return 0;
+}
+
+```
+
+- 위의 코드는 어떤 순서로 출력이 될까? => 모른다.
+  - 경우 1) add()가 먼저 평가
+  - 경우 2) subtract()가 먼저 평가
+- 표준에 따르면, 함수 매개 변수의 평가 순서는 명시되어 있지 않음(unspecificed)
+  - undefined 와 unspecificed 는 다르다. unspecified는 문제에 대해 가능한 경우의 수를 정의는 해 놓는다. 단 그 경우의 수 중 어떤 것이 옳은지는 정의하지 않는다.
+- 즉, 컴파일러에 따라 평가 순서가 달라질 수 있다.
+- `printf()`가 실제로 실행되기 전에 `add()`와 `subtract()`가 실행가 실행되는 것은 보장된다. 단, add와 subtract 중 어떤 것이 먼저 실행될지는 보장하지 않는다. 컴파일러에 따라 다를 수 있다는 말이다.
+- 따라서 같은 라인에서 왼편에 있는 함수가 먼저 실행될 것이라 가정하고 코드를 짜는 것은 버그를 유발할 수 있다.
+  - 예를 들어, 두 함수가 같은 변수를 사용(read/write)하고 호출 순서에 의존적이라고 할 경우, 컴파일러에 따라 함수 실행 순서가 달라질 수 있고 의도와는 다른 결과를 만들 수 있다.
+
+```c
+#include <stdio.h>
+
+float divid(int op1, int op2)
+{
+    printf("%d / %d = ", op1, op2);
+    return op1 / (float) op2;
+}
+
+int main(void)
+{
+    int num = 0;
+    float result = divide(++num, ++num);
+    printf("%f\n", result);
+
+    return 0;
+}
+
+```
+
+- 그렇다면 위의 코드는 실행 결과가 어떻게 될까? => undefined behavior
+  - 첫 번째 인자가 먼저 평가될 경우
+  - 두 번째 인자가 먼저 평가될 경우
+  - 동시에 평가될 수도 있다.
+
+- 기본적으로 한 줄에서 동인한 변수를 여러 번 바꾸면 위험하다.
+  - 함수 매개 변수의 평가 순서는 컴파일러마다 다를 수 있다.
+  - 한 함수의 매개 변수들이 동일한 변수를 수정할 경우, 결과가 정의되지 않음(undefined behavior)
+  
+  ```c
+  /* 위험한 것들 */
+  add(++i, ++i);
+  add(i = -1, i = -1);
+  add(i, i++);
+  ```
+
+- 정의되지 않은 것은 하지말자. 위험하다.
+- `+` 연산자는 피연산자의 평가 순서를 강제하지 않는다. `=` 연산자도 마찬가지이다.
+
+## 연산자 우선순위와 평가 순서
+
+```c
+int main(void)
+{
+    int num1 = 10;
+    int num2 = 20;
+
+    int result = add(num1, num2) + subtract(num1, num2) * divide(num1, num2);
+    printf("result: %d\n", result);
+
+    return 0;
+}
+```
+
+- 주의하자. 함수의 평가 순서와 연산자 우선 순위는 아무런 관련이 없다. add, subtract, divide 무엇이 먼저 평가될 지는 알 수 없다.
 
 ## 평가 순서를 강제하는 연산자
 
