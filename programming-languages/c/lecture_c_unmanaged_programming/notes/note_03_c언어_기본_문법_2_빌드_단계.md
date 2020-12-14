@@ -304,9 +304,95 @@ int main(void)
 
 ## const 키워드
 
+- 이름 달린 상수를 만들어 주기 좋다.
+- 실수를 방지하기 좋다.
+
+```c
+/* 예 1) const 때문에 밑에서 id를 바꾸려는 시도를 하면 컴파일 에러가 난다. */
+int calculate_risk(const int id) 
+{
+  /* ... */
+
+  id *= 2; /* 컴파일 오류 */
+
+  /* ... */
+}
+
+/* 예 2) const 때문에 밑에서 id를 바꾸려는 시도를 하면 컴파일 에러가 난다. */
+void update_dimenstion(int w, int h, int data[])
+{
+    const int area = w * h;
+
+  /* ... */
+
+    area = area + 1; /* 컴파일 오류 */
+
+  /* ... */
+}
+
+```
+
+- const best practice
+  - 기본적으로 모든 변수에 const를 붙이자.
+  - 정말 값 변경이 필요한 변수에만 const를 생략하자.
+
 ## goto 문
 
+```c
+goto <label_name>;
+...
+
+<label_name>:
+
+```
+
+- C는 위에서 아래로 순차적으로 코드를 실행하는 언어이다. 그런데 `goto`를 쓰면 이 순서를 어기고 다음에 실행할 코드를 마음대로 지정이 가능하다.
+  - 같은 함수 내에 있는 레이블(label)로 점프한다.
+
+- goto의 나쁜 예
+
+```c
+void do_work(void)
+{
+infinity:
+    printf("work time!\n");
+
+    goto infinity;
+}
+
+```
+
+- 반복문은 결국 goto를 사용하는 코드이다.
+
 ## goto 문은 정말로 악마인가요?
+
+- 기본적으로는 좋지 않다. 실수/버그를 만들기 쉬운 코드이기 때문이다.
+- 그러나 때때로 goto를 써서 코드가 간결해지는 경우도 있다. 중첩된 for문에서 중간에 종료하고자 하는 경우, goto를 이용하면 코드가 많이 간결해진다.
+
+```c
+for (i = 0; i < DEPTH; ++i) {
+    for (j = 0; j < HEIGHT; ++j) {
+        for (k = 0; k < WIDTH; ++k) {
+            if (data[i][j][k] == 1) {
+                printf("%d", data[i][j][k]);
+            }
+            else {
+                goto loop_exit;
+            }
+        }
+    }
+}
+
+loop_exit:
+  /* code */
+```
+
+- goto best practice
+  - goto 문은 언제나 전방(아래쪽)으로만 점프할 것. 위로 점프하면 코드가 꼬이기 쉽다.
+  - nested loop에서 빠져나올 때는 자유롭게 쓸 것.
+  - 한 함수 안에 있는 여러 개의 조건문이 공통된 코드를 실행해야 할 때는 괜찮다.
+    - 예) 함수 마지막에 성공/오류 조건 처리
+  - 단, 같이 일 하는 프로젝트에서 goto를 좋아하지 않는 사람이 있다면, 안 쓰는 게 낫다.
 
 ## 배열
 
