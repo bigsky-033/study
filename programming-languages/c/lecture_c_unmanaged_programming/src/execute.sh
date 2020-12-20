@@ -20,6 +20,6 @@ else
     ./${out}
 
     echo ""
-    echo "[INFO] Remove execute file for $1"
+    echo "[INFO] Remove execute file(${out}) for $1"
     rm ${out}
 fi
