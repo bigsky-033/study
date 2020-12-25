@@ -1,7 +1,7 @@
-#include <stdio.h>
-
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
+
+#include <stdio.h>
 
 void get_min_max(const int nums[], const size_t length, int *out_min, int *out_max);
 
