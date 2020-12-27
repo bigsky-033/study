@@ -813,8 +813,130 @@ void open_file(const char* filename)
 
 ## 파일 탐색
 
+- 스트림은 한 방향으로 흐르며 읽는다.
+- 다음에 쓸 위치 또는 읽을 위치를 임의의 곳으로 옮길 수 있을까?
+  - 근데 이건 지원하는 스트림이 있고 그렇지 않은 스트림이 있다.
+- 스트림에는 총 3개의 표시자가 있다.
+  - EOF 표시자
+  - 오류 표시자
+  - 파일 위치 표시자
+- 스트림의 위치를 파일 위치 표시자(file position indicator)라고 한다.
+  - `void rewind(FILE* stream);`
+    - 처음으로 되돌린다.
+  - `int fseek(FILE* stream, long offset, int origin);`
+    - 파일의 위치를 origin으로부터 offset 만큼 이동한다.
+      - origin 에는 3가지 종류의 매크로가 있다.
+        - SEEK_SET: 파일의 시작
+        - SEEK_CUR: 현재 파일 위치 표시자의 위치
+        - SEEK_END: 파ㅓ일의 끝
+    - 위치 이동에 성공하면 0을 반환하고 그렇지 않으면 0이 아닌 수를 반환한다.
+    - 파일의 앞에서 약간 뒤로 이동하는 예
+
+    ```c
+    void read_file(const char* filename)
+    {
+        FILE* stream;
+        int data[LENGTH];
+        size_t num_read;
+
+        /* 오류 처리 생략 */
+        stream = fopen(filename, "rb"); /* {20, 74, 99, 49, 63} */
+
+        fseek(stream, 1 * sizeof(data[0]), SEEK_SET);
+
+        num_read = fread(data, sizeof(data[0]), LENGTH, stream);
+        print_array(data, num_read); /* 74, 99, 49, 63 */
+
+        fclose(stream);
+    }
+
+    ```
+
+    - 현재 위치에서 뒤로 달아가는 예
+
+    ```c
+    void read_file(const char* filename)
+    {
+        FILE* stream;
+        int data[LENGTH];
+        size_t num_read;
+
+        /* 오류 처리 생략 */
+        stream = fopen(filename, "rb"); /* {20, 74, 99, 49, 63} */
+
+        fseek(stream, 3 * sizeof(data[0]), SEEK_SET);
+        fseek(stream, -1 * sizeof(data[0]), SEEK_SET);
+
+        num_read = fread(data, sizeof(data[0]), LENGTH, stream);
+        print_array(data, num_read); /* 99, 49, 63 */
+
+        fclose(stream);
+    }
+
+    ```
+
+    - 이동이 실패하는 경우
+
+    ```c
+    void read_file(const char* filename)
+    {
+        FILE* stream;
+        int data[LENGTH];
+        size_t num_read;
+
+        stream = fopen(filename, "rb"); /* {20, 74, 99, 49, 63} */
+        result = fseek(stream, -1 * sizeof(data[0]), SEEK_SET);
+        if (result != 0)
+        {
+            perror("error while seeking");
+            fclose(stream);
+            return;
+        }
+
+        /* 생략 */
+    }
+
+    ```
+
+  - `long ftell(FILE* stream);`
+    - 파일 위치 표시자의 현재 위치를 알려주는 함수
+    - 실패하면 -1을 반환한다.
+      - 일반적인 파일 스트림에서는 발생하지 않는다.
+      - 파일의 크기가 없는 파일 스트림(예: 소켓, 파이프 등등)에서 발생할 수 있다.
+      - 파일의 크기가 제공되지 않는 가상 파일 시스템에서도 발생할 수 있다.
+    - 바이너리 모드로 열었을 때는 파일 시작 지점으로부터 몇 바이트 떨어져 있는지를 알려준다.
+    - 텍스트 모드로 열었을 때는 어떤 값을 반환할지 정해져있지 않으나 유효한 값을 반환해 준다.
+      - 유효하다는 말은 fseek()의 offset 변수로 사용할 때 유효한 값이란 말이다.
+
 ## 입출력 리디렉션
+
+- 입력 리디렉션
+  - 텍스트 파일을 열어 stdin에 대신 타이핑 해주는 느낌
+- 출력 리디렉션
+  - stdout에 출력되는 것을 화면에 보여주는 대신 지정한 파일에 저장하는 느낌
+  - stderr에 출력되는 것도 별도의 텍스트 파일에 저장되게 할 수 있다.
+- 입출력 리디렉션은 C의 기능이 아니다.
+- 사용법
+  - stdin(0): < 를 사용
+  - stdout(1): > 를 사용
+  - stderr(2): 2>를 사용 (두 번째 출력)
+    - `> a.exe < input.txt > output.txt 2> error.txt`
 
 ## 커맨드 라인 인자
 
-## 커맨드 라인 인자 메모리 뷰
+- 커맨드 라인에서 프로그램을 실행할 때 인자를 넣어주는 방법.
+  - 예) `filecopy.out a.txt b.txt`
+  - 저렇게 들어온 인자를 main() 함수의 매개변수에서 읽어올 수 있다.
+    - `int main(int argc, const char* argv[])`
+      - argc는 들어온 인자의 수이다.
+      - `filecopy.out a.txt b.txt` 의 경우에 argc는 3이다.
+        - 첫 번째 인자: 실행한 파일의 경로
+        - 나머지 인자: 그 후에 따라 들어온 2개의 인자
+      - argv는 char 포인터 배열
+        - argv[argc + 1]로 생성이 된다.
+        - argv[0]: 첫 번째 요소에는 실행 파일의 이름
+        - argv[1] ~ argv[argc-1]: 커맨드라인 인자들이 순차적으로 들어온다.
+        - argv[argc]: NULL
+      - `const char* argv[]`는 포인터의 배열이다.
+        - 각 포인터는 그냥 C 스타일 문자열이다.
+        - 커맨드 라인에 들어온 값을 프로그램 실행할 때 만든 프로세스의 메모리 어딘가에 저장하고 그 주소들을 모아 argv[] 배열에 넣어서 보내주는 것이다.
