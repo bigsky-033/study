@@ -458,13 +458,358 @@ while (fgets(line, LINE_LENGTH, stdin) != NULL)
 
 ## 한 블록씩 읽기
 
+- 앞에서 본 방법은 텍스트 데이터를 읽는 방법이었다. 그러면 바이너리 데이터는 어떻게 읽을까? 그게 바로 한 블록씩 읽는 것이다.
+- fread()
+  - `size_t fread(void* buffer, size_t size, size_t count, FILE* stream);`
+    - stream으로부터 size 바이트짜리 데이터를 총 count 개수 만큼 읽어서 buffer에 저장하는 것이다.
+    - EOF를 만나면 당연히 멈춘다.
+      - 그러면 count보다 적은 수를 읽을 수도 있다는 이야기이다. 그러면 실제로 읽은 개수(바이트 아님)를 반환한다.
+
+- fwrite()
+  - `size_t fwrite(const void* buffer, size_t size, size_t count, FILE* stream);`
+
+```c
+int nums[64];
+size_t num_read;
+FILE* fstream;
+
+num_read = fread(nums, sizeof(nums[0]), 64, fstream);
+fwrite(nums, sizeof(nums[0]), 64, fstream);
+
+```
+
+- int 블록을 총 64개 저장한다.
+  - 총 바이트는 `64 * sizeof(int)` 만큼이다.
+
+- 한 블록씩 읽는 방법이 유용한 경우?
+  - 바이너리 데이터를 읽기 위해 필요하다. 바이너리 데이터를 하나씩 읽을 수도 있지만 한꺼번에 읽으면 성능이 향상된다.
+- 한 블록씩 읽을 때 주의할 점
+  - 기본 데이터형의 크기는 시스템마다 다르다.
+  - 파일에 저장할 데이터 크기를 저장해두는 게 좋다.
+
 ## 파일 입출력
+
+- C에서의 파일 관련 연산은 이런 식이다.
+  - 1) 파일을 열어서 파일 스트림을 가져온다.
+  - 2) 그 파일 스트림을 사용해서 하고 싶은 걸 한다.
+  - 3) 그 파일을 닫아준다.
 
 ## 파일 열기
 
+```c
+#include <stdio.h>
+
+#define LENGTH (1024)
+
+FILE* stream;
+char list[LENGTH];
+
+stream = fopen("hello.txt", "r");
+
+if (fgets(list, LENGTH, stream) != NULL)
+{
+    printf("%s", list);
+}
+
+```
+
+- 파일 열기
+  - `FILE* fopen(const char* filename, const char* mode);`
+    - filename으로 지정된 파일을 연다.
+    - 열 때 사용하는 모드(읽기 전용, 이진 파일 등)는 mode로 지정한다.
+    - 반환 값은 파일 스트림 포인터이다.
+- 파일 열기 모드
+
+| 모드 | 설명                                            | 파일이 이미 있다면        | 파일이 없다면      |
+| ---- | ----------------------------------------------- | ------------------------- | ------------------ |
+| r    | read, 파일을 읽기 전용으로 연다                 | 파일의 첫 부분부터 읽는다 | 열기에 실패한다    |
+| w    | write, 파일을 쓰기 전용으로 생성한다            | 내용을 모두 없앤다        | 새 파일을 생성한다 |
+| a    | append, 파일에 이어 쓴다                        | 파일의 끝부분부터 읽는다  | 새 파일을 생성한다 |
+| r+   | read extended, 읽기/쓰기용으로 파일을 연다      | 파일의 첫 부분부터 읽는다 | 오류               |
+| w+   | write extended, 일기/쓰기용으로 파일을 생성한다 | 파일의 내용을 모두 없앤다 | 새 파일을 생성한다 |
+| a+   | append extended, 읽기/쓰기용으로 파일을 연다    | 파일의 끝부분부터 읽는다  | 새 파일을 생성한다 |
+
+- 위의 파일 열기 모드는 텍스트 모드이다.
+  - b를 붙이면 이진 모드로 파일을 연다.
+    - 사실 유닉스 계열에서는 아무런 차이가 없다.
+    - 윈도우에서는 새 줄 문자 처리하는 것만 달라진다.
+
 ## 파일에 쓰기/읽기 예, fflush(), 파일에 이어 쓰기 예
 
+- 파일에 쓰기 예(미완성)
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+#define LENGTH (5)
+
+/* ... */
+
+FILE* stream;
+int scores[LENGTH] = { 100, 34, 95, 56, 72 };
+
+stream = fopen(filename, "wb");
+
+fwrite(scores, sizeof(scores[0]), LENGTH, stream);
+
+/* ... */
+
+write_file("hello.txt");
+
+```
+
+- 그런데 위의 경우는 바로 파일에 써지지 않는다. 보통 쓰기는 버퍼링 때문에 바로 파일에 저장되지 않는다. 이런 경우엔,
+  - '\n'이 들어오거나
+  - fflush()를 호출해야 한다
+- 그런데...fwrite()는 '\n'을 '\n'으로 인식을 못 한다.
+  - fwrite() 의 첫 번째 인자로 받는 buffer가 `char*`도 아니고 `int*`도 아니고 `float*` 도 아니고 그냥 `void*` 이다.
+  - 즉 fwrite() 입장에서는 그냥 비트 패턴이 들어온다는 것이다. 숫자에 의미가 없다.
+    - 0X0A가 fwrite() 입장에서는 '\n'을 의미하는 건지 정수 10을 의미하는 건지 뭔지 알 수가 없다.
+  - 따라서 fflush() 만이 유일한 해결법이다.
+
+- 파일에 쓰기 예(완성)
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+#define LENGTH (5)
+
+/* ... */
+
+FILE* stream;
+int scores[LENGTH] = { 100, 34, 95, 56, 72 };
+
+stream = fopen(filename, "wb");
+
+fwrite(scores, sizeof(scores[0]), LENGTH, stream);
+
+/* ... */
+
+write_file("hello.txt");
+fflush(stream);
+
+```
+
+- 파일에 읽기 예(미완성)
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+#define LENGTH (6)
+
+/* ... */
+
+void read_file(const char* filename)
+{
+    FILE* stream;
+    char data[LENGTH];
+
+    stream = fopen(filename, "rb");
+
+    while (TRUE)
+    {
+        if (fgets(data, LENGTH, stream) == NULL)
+        {
+            break;
+        }
+        printf("%s\n", data);
+    }
+}
+
+```
+
+- 파일에 이어쓰기 예 (미완성)
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+#define LENGTH (1024)
+
+/* ... */
+
+void append_file(const char* filename)
+{
+    FILE* stream;
+    char data[LENGTH];
+
+    stream = fopen(filename, "ab");
+
+    if (fgets(data, LENGTH, stdin) != NULL)
+    {
+        fwrite(data, strlen(data), 1, stream);
+    }
+}
+
+/* ... */
+
+append_file("hello.txt");
+
+```
+
 ## 파일 닫기, 파일 오류처리, stderr, strerror(), perror()
+
+- 위에서 한 것을 보면...뭔가 빠진 느낌이다. 파일을 닫는 부분이 없다. 파일을 열기만 하고 닫는 부분이 없다.
+- 파일은 내가 열었으면 내가 닫아야 한다.
+  - 파일은 운영체제가 열어주는 것이다. 운영체제는 우리가 언제 파일을 다 써서 필요 없는지 모른다. 따라서 직접 말해주지 않으면 알아서 닫아주지 않는다.
+  - 계속 파일을 일기만 하면 어느 순간 운영체제가 더 이상은 파일을 열 수 없다고 하며 뻗을 수 있다.
+- 파일을 열었으면 언제나 닫자!
+- fclose()
+  - `int fclose(FILE* stream);`
+    - 파일을 닫는 함수이다.
+    - 성공하면 0, 실패하면 EOF를 반환한다.
+    - 버퍼링 중인 스트림은 이렇게 작동한다.
+      - 출력 스트림: 버퍼에 남아있는 데이터는 파일로 다 내보낸다.
+      - 입력 스트림: 무시하고 버린다.
+- C는 예외 처리가 없다. 그러면 fopen() 함수는 실패하면 무엇을 반환할까?
+  - `FILE* fopen(const char* filename, const char* mode);`
+    - 실패하면 NULL 포인터를 반환한다.
+
+    ```c
+    #include <stdio.h>
+
+    /* ... */
+
+    #define LENGTH (1024)
+
+    /* ... */
+
+    void open_file(const char* filename)
+    {
+        FILE* stream;
+        char data[LENGTH];
+
+        stream = fopen(filename "rb");
+        if (stream == NULL)
+        {
+            fprintf(stderr, "error while opening %s", filename);
+            return;
+        }
+
+        if (fgets(data, LENGTH, stream) != NULL)
+        {
+            printf("%s", data);
+        }
+
+        if (fclose(stream) != 0)
+        {
+            fprintf(stderr, "error while closing");
+        }
+    }
+
+    /* ... */
+
+    int main(void)
+    {
+        open_file("hello.txt");
+        return 0;
+    }
+
+    ```
+
+- stderr
+  - 프로그램이 실행될 때 자동으로 3개의 스트림을 만들어 준다. stdin, stdout 그리고 stderr이다.
+  - stderr은 stdout 하고 비슷하다.
+  - 다만, stderr는 오류 관련 메세지를 출력하는 전용 스트림이다.
+  - stderr은 보통 버퍼링을 사용하지 않는다.
+
+- 파일 열기에 실패할 경우의 코드
+
+```c
+#include <stdio.h>
+
+/* ... */
+
+void open_file(const char* filename)
+{
+    FILE* stream = fopen(filename, "rb");
+    if (!stream)
+    {
+        fprintf(stderr, "error while opening %s", filename);
+        return;
+    }
+
+    /* ... */
+
+}
+
+```
+
+- 실패한 이유를 알고 싶을 경우엔 어떻게 해야할까?
+  - 몇몇 표준 라이브러리 함수들이 실패할 때 그 이유를 오류코드(숫자)로 어딘가에 저장해 둔다.
+  - 그게 errno라는 매크로(#define)
+    - <error.h> 안에 있다.
+
+  - 오류 코드를 보여주는 코드
+
+  ```c
+  #include <stdio.h>
+  #include <errno.h>
+
+  void open_file(const char* filename)
+  {
+      FILE* stream = fopen(filename, "rb");
+      if (!stream)
+      {
+          fprintf(stderr, "[%d] error while opening %s", errno, filename);
+          return;
+      }
+
+      /* ... */
+  }
+
+  ```
+
+  - 오류 코드를 말로 설명해주는 함수가 있다.
+    - `char* strerror(int errnum);`
+      - <string.h>에 정의된다.
+      - errno를 넣으면 문자열로 된 친절한 설명을 돌려준다.
+
+      ```c
+      #include <stdio.h>
+      #include <errno.h>
+
+      void open_file(const char* filename)
+      {
+          FILE* stream = fopen(filename, "rb");
+          if (!stream)
+          {
+              fprintf(stderr, "%s - %s", filename, strerror(errno));
+              return;
+          }
+
+          /* 코드 생략 */
+      }
+
+      ```
+
+      - perror()도 있다.
+        - `void perror(const char* s);`
+
+      ```c
+      #include <stdio.h>
+      #include <errno.h>
+
+      void open_file(const char* filename)
+      {
+          FILE* stream = fopen(filename, "rb");
+          if (!stream)
+          {
+              perror("error while opening");
+              return;
+          }
+
+          /* 코드 생략 */
+      }
+
+      ```
+
+- C에서의 오류처리는 보통 이런 식이다.
+  - 함수가 곧바로 오류 코드를 반환한다.
+  - 내부적으로 오류 코드를 전역 변수로 들고 있다가 검사한다.
 
 ## 파일 탐색
 
