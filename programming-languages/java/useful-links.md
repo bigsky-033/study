@@ -9,6 +9,7 @@
 - Java Garbage Collection Basics, <https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html>
 - 스레드 덤프 분석하기, <https://d2.naver.com/helloworld/10963>
 - Thread Dump 분석하기, <https://brunch.co.kr/@springboot/126>
+- Creating a Java off-heap in-memory database, <https://blogs.oracle.com/javamagazine/creating-a-java-off-heap-in-memory-database?fbclid=IwAR3WVzgM7RDQ2Az0IcutJMeWw7ACZTRZ10jb0FeP9cPsLLwt3SBhBvU18Gg>
 
 ## Async
 
