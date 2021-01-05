@@ -102,11 +102,187 @@
 
 ## 메모리 할당 및 해제 함수, malloc()
 
+- malloc()
+  - `void * malloc(size_t size);`
+  - 메모리 할당(memory allocation)의 약자
+  - size_t 바이트 만큼의 메모리를 반환해준다.
+  - 반환된 메모리에 들어있는 값은 쓰레기 값이다. 초기화를 해주지 않는다.
+  - 메모리가 더 이상 없는 등 어떤 이유로 실패하면 NULL을 반환한다.
+
 ## free(), malloc() 사용 예
+
+- free()
+  - 할당받은 메모리를 해제하는 함수
+  - 즉, 메모리 할당 함수들을 통해서 얻은 메모리만 해제 가능하다. 그 외의 주소를 매개변수로 전달할 경우 결과가 정의되지 않았다.
+
+- 메모리 할당 예, 간단한 예
+
+```c
+#include <stdlib.h>
+
+#define LENGTH (10)
+
+/* ... */
+
+size_t i;
+int* nums = malloc(LENGTH * sizeof(int)); /* 메모리 할당 */
+
+for (i = 0; i < LENGTH; ++i)
+{
+    nums[i] = i * LENGTH;
+}
+
+for (i = 0; i < LENGTH; ++i)
+{
+    printf("%d ", nums[i]);
+}
+
+free(nums); /* 중요! 메모리 반환 */
+
+```
+
+- 메모리 할당 예, 여러 줄의 입력을 받아 출력하기
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_LINES (5)
+#define LINE_LENGTH (2048)
+
+/* ... */
+
+char* lines[NUM_LINES];
+char line[LINE_LENGTH]; /* 일종의 임시 버퍼 */
+size_t i;
+size_t j;
+
+/* ... */
+
+for (i = 0; i < NUM_LINES; ++i)
+{
+    if (!fgets(line, LINE_LENGTH, stdin))
+    {
+        clearerr(stdin);
+        break;
+    }
+
+    lines[i] = malloc(strlen(line) + 1); /* +1 하는 이유는 널문자를 넣어야 하기 때문 */
+    if (lines[i] == NULL)
+    {
+        fprintf(stderr, "%s\n", "out of memory");
+        break;
+    }
+
+    strcpy(lines[i], line);
+}
+
+for (j = 0; i < i; ++j)
+{
+    printf("%s, lines[j]);
+}
+
+for (j = 0; j < i; ++j)
+{
+    free(lines[i]); /* 중요 */
+}
+
+```
 
 ## 동적 메모리 할당 시 문제
 
+- 할당받아 온 주소를 그대로 연산에 사용하면
+  - 메모리 할당 함수가 반환한 주소가 저장된 변수를 그대로 포인터 연산에 사용하면 메모리 해제할 때 문제가 발생할 수 있다. 최초에 받아온 주소가 아니라 다른 주소를 가르킬 수 있기 때문이다. 이럴 경우 결과가 정의되지 않고...망할 수 있다.
+- 할당받아 온 포인터로 연산을 하지 않는 게 실수를 줄일 수 있는 방법 중 하나이다.
+
+  ```c
+  void* nums;
+  int* p;
+  size_t i;
+
+  nums = malloc(LENGTH * sizeof(int));
+  p = nums; /* 다른 변수에 할당 */
+
+  for (i = 0; i < LENGTH; ++i)
+  {
+      *p++ = 10 * (i + 1);
+  }
+
+  free(nums);
+
+  ```
+
+- 해제한 메모리를 다시 해제해도 문제이다. 잘못하면 크래시가 날 수도 있다.
+- 해제한 메모리를 또 사용해도 문제가 발생할 수 있다. 결과가 정의되지 않아있긴 하지만 크래시가 날 수 있다.
+- 해제한 후 널 포인터를 대입해주는 게 실수를 방지할 수 있는 방법이 될 수 있다.
+  - free() 한 뒤에 변수에 NULL을 대입해서 초기화
+
+    ```c
+    /* codes... */
+    nums = malloc(LENGTH * sizeof(int));
+
+    /* codes... */
+
+    free(nums);
+    nums = NULL;
+
+    ```
+
 ## free()는 몇 바이트를 해제할지 어떻게 알지?, calloc(), memset(), realloc()
+
+- 구현마다 다르지만 보통 `malloc(32)` 하면 그것보다 조금 큰 메모리를 할당한 뒤, 제일 앞 부분에 어떤 데이터들을 채워 놓는다. 그리고 데이터 만큼의 오프셋을 더한 값을 주소로 돌려준다.
+- 나중에 free()를 통해 주소 해제를 요청하면 오프셋만큼 앞으로 다시 가서 그 앞 주소를 본 뒤, 실제 몇 바이트가 할당 됐었는지 확인 후 해제한다. 즉 앞 부분에 일종의 메타데이터를 적어뒀던 것이다.
+
+### 다른 메모리 할당 함수
+
+- calloc()
+  - `void* calloc(size_t num, size_t size);`
+    - 메모리를 할당할 때 자료형의 크기(size)와 수(num)을 따로 지정한다.
+    - 모든 바이트를 0으로 초기화 해준다.
+    - 잘 안쓴다. 그 이유는 calloc()을 하나 malloc() + memset()을 하나 똑같은 것이기 때문이다. 보통은 calloc() 대신 malloc()와 memset()을 조합해서 쓴다.
+
+      ```c
+      void* nums;
+
+      nums = malloc(LENGTH * sizeof(int));
+      memset(nums, 0, LENGTH * sizeof(int));
+
+      free(nums);
+      nums = NULL;
+
+      ```
+
+- memset()
+  - `void* memset(void* dest, int ch, size_t count);`
+  - <string.h>에 있다.
+  - char로 초기화(1바이트씩)된다.
+  - 그 외의 자료형으로 초기화하려면 직접 for 문을 작성해야 한다.
+  - 다음과 같은 경우에 결과가 정의되지 않았다.
+    - count가 dest의 영역을 넘어설 경우 (소유하지 않은 메모리에 쓰기)
+    - dest가 널 포인터일 경우
+
+- realloc()
+  - `void* realloc(void* ptr, size_t new_size);`
+  - 이미 존재하는 메모리(ptr)의 크기를 new_size 바이트로 변경한다.
+  - 새로운 크기가 허용하는 한 기존 데이터를 그대로 유지한다.
+
+- 크기가 커져야 할 때 두 가지 경우가 있다.
+  - 지금 갖고 있는 메모리 뒤에 충분한 공간이 없는 경우, 새로운 메모리를 할당한 뒤 기존 내용을 복사하고 새 주소를 반환한다.
+
+  ```c
+  str = malloc(LENGTH * sizeof(char));
+  str = realloc(str, 2 * LENGTH * sizeof(char)); /* str은 새로운 주소를 갖는다. */
+
+  ```
+
+  - 지금 갖고 있는 메모리 뒤에 공간이 충분하다면 그냥 기존 주소를 반환한다(보장은 없다). 그리고 추가된 공간을 쓸 수 있게 된다.
+
+  ```c
+  str = malloc(LENGTH * sizeof(char));
+  str = realloc(str, 2 * LENGTH * sizeof(char)); /* str은 기존 주소를 갖는다. */
+
+  ```  
 
 ## realloce()의 메모리 누수 문제, memcpy()
 
