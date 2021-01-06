@@ -286,10 +286,242 @@ for (j = 0; j < i; ++j)
 
 ## realloce()의 메모리 누수 문제, memcpy()
 
+- realloc()을 제대로 안 쓰면 메모리 누수가 발생할 수 있다.
+  - `void* realloc(void* ptr, size_t new_size);`
+    - 반환값
+      - 성공 시, 새롭게 할당된 메모리의 시작 주소를 반환하며 기존 메모리는 해제된다.
+      - 실패 시, NULL을 반환하지만 기존 메모리는 해제되지 않는다.
+        - 실패 시, 메모리 누수가 발생할 수 있다.
+
+          ```c
+          void* nums;
+
+          nums = malloc(SIZE);
+
+          nums = realloc(nums, 2 * SIZE); /* 실패 시, NULL 반환 */
+
+          ```
+
+          - 실패 후 num에 NULL이 대입되어 버린다면, 원래 nums에 저장되어 있던 주소가 사라진다. 따라서 기존 메모리를 해제하고 싶어도 주소를 몰라서 해제할 수 없게 된다. 메모리 누수가 발생하는 것이다.
+
+          ```c
+          /* 올바른 방법 */
+          void* nums;
+          void* tmp;
+
+          nums = malloc(SIZE);
+
+          tmp = realloc(nums, 2 * SIZE);
+          if (tmp != NULL)
+          {
+              nums = tmp;
+          }
+
+          ```
+
+- realloc()는 malloc() + memcpy() + free() 를 합친 것과 유사하다.
+- memcpy()
+  - `void* memcpy(void* dest, const void* src, size_t const);`
+    - <string.h>에 있다.
+    - src의 데이터를 count 바이트 만큼 dest에 복사한다.
+    - 다음과 같은 경우 결과가 정의되지 않는다.
+      - dest의 영역 뒤에 데이터를 복사할 경우 (소유하지 않은 메모리에 쓰기)
+      - src나 dest가 널 포인터일 경우 (널 포인터 역참조)
+- 메모리 누수가 나지 않게 코드를 작성하자
+  - realloc()을 사용할 때는 정말 정말 조심해야 한다.
+  - 그래서 차라리 malloc() + memcpy() + free()로 좀 더 명시적으로 드러나게 코딩하는 게 나을 수도 있다.
+  - 그냥...신경 안 쓰고 realloc()을 쓰는 경우도 많다.
+
 ## memcmp(), 정적 vs 동적 메모리
+
+- 여러 줄 입력 받아 출력하기 예
+
+```c
+#define LINE_LENGTH (2048)
+#define INCREMENT (2)
+
+/* ... */
+char** lines;
+char line[LINE_LENGTH];
+size_t max_lines;
+size_t num_lines;
+size_t i;
+char** tmp;
+
+max_lines = 0;
+num_lines = 0;
+lines = NULL;
+
+/* ... */
+
+while(1)
+{
+    if (fgets(line, LINE_LENGTH, stdin) == NULL)
+    {
+        clearerr(stdin);
+        break;
+    }
+
+    /* 더 이상 공간이 없음 */
+    if (num_lines == max_lines)
+    {
+        tmp = realloc(lines, (max_lines + INCREMENT) * sizeof(char*));
+
+        if (tmp == NULL)
+        {
+            fprintf(stderr, "%s\n", "out of memory");
+            break;
+        }
+
+        lines = tmp;
+        max_lines += INCREMENT:
+    }
+
+    lines[num_lines] = malloc(strlen(line) + 1);
+    if (lines[num_lines] = NULL)
+    {
+        fprintf(stderr, "%s\n", "out of memory");
+        break;
+    }
+    strcpy(lines[num_lines++], line);
+}
+
+for (i = 0; i < num_lines; ++i)
+{
+    printf("[%d] %s", i, lines[i]);
+}
+
+for (i = 0; i < num_lines; ++i)
+{
+    free(lines[i]);
+}
+
+free(lines); /* 포인터를 담을 수 있는 배열도 동적 배열이기 때문에 해제해 주어야 한다. */
+return 0;
+
+```
+
+- memcmp()
+  - `int memcmp(const void* lhs, const void* rhs, size_t count);`
+    - 첫 count 만큼의 메모리를 비교하는 함수
+    - strcmp()와 매우 비슷하다.
+    - 단, 널 문자를 만나도 계속 진행한다.
+    - 다음의 경우 결과가 정의되지 않았다.
+      - lhs가 rhs의 크기를 넘어서서 비교할 경우 (소유하지 않은 메모리에 쓰기)
+      - lhs이나 rhs이 널 포인터일 경우 (널 포인터 역참조)
+  - 구조체를 비교할 때 유용하다.
+    - 단 구조체가 포인터 변수를 가질 경우에는 원하는 대로 비교가 동작하지 않을 수 있다.
+
+- 구조체 멤버 변수 - 배열 vs 포인터
+  - 고정된 길이인 배열
+    - 그대로 대입 가능
+    - 파일에 곧바로 저장 가능
+    - memcpy()를 곧바로 사용 가능
+    - 낭비하는 용량이 있음
+    - 메모리 할당/해제 속도 빠름
+
+    ```c
+    typedef struct
+    {
+        char firstname[NAME_LEN];
+        char lastname[NAME_LEN];
+    } name_fixed_t;
+
+    ```
+
+  - 동적 메모리를 사용하는 포인터
+    - 그대로 대입 불가, 이 경우는 얕은 복사가 되어버린다.
+    - 파일에 곧바로 저장 불가능
+    - memcpy() 곧바로 사용 불가능
+    - 낭비하는 용량 없음
+    - 메모리 할당/해제 속도가 느리다.
+
+    ```c
+    typedef struct
+    {
+        char* firstname;
+        char* lastname;
+    } name_dynamic_t;
+
+    ```
+
+- 정적 vs 동적 메모리
+  - 정적 메모리를 우선적으로 사용할 것
+  - 안 될 때만 동적 메모리를 쓴다.
 
 ## 동적 메모리의 소유권 문제
 
+- 이미 할당된 메모리를 누가 해제해 주어야 하는 것인가? 이런 문제들을 정립하는 것이 소유권 문제이다.
+- 소유주란, 메모리를 생성한 함수를 말한다. 그리고 그 메모리를 반드시 책임지고 해제해야 하는 주체이다. 소유주가 아닐 경우엔 그냥 빌려서 사용할 뿐 해제하면 안 된다는 말이기도 하다.
+- 문제가 생길 수 있는 예 - 호출자가 동적으로 할당한 메모리를 사용하는지 모를 수 있다.
+
+```c
+const char* combine_string(const char* a, const char* b)
+{
+    void* str;
+    char* p;
+
+    /* codes */
+
+    str = malloc(size);
+
+    /* codes */
+
+    return str;
+}
+
+
+/* ... */
+
+result = combine_string("Hello", "World");
+
+```
+
+- 이런 문제에 대한 해결 방법은...이런 경우가 최대한 없게 하는 것이다. 함수 안에서 할당하는 대신 함수 밖에서 할당 후 매개변수로 전달하는 것이다.
+- 동적으로 할당 후 반환을 피할 수 없다면?
+  - 함수 이름, 변수명이나 주석에라도 표시하자
+    - 함수 이름: `const char* combile_string_malloc(const char* str1, const char& str2);`
+    - 변수 명: `void* pa_str;`, pa: pointer allocated
+
+- 베스트 프랙티스 정리
+  - malloc() 작성한 뒤에 곧바로 free()도 추가하자.
+  - 동적 할당을 한 메모리 주소를 저장하는 포인터 변수와 포인터 연산에 사용하는 포인터 변수를 분리해 사용하자.
+  - 메모리 해제 후 널 포인터를 대입하자.
+  - 정적 메모리를 우선으로 사용하고 어쩔 수 없을 때만 동적 메모리를 사용하자.
+  - 동적 메모리 할당을 할 경우, 변수와 함수 이름에 그 사실을 명백히 표현하자.
+
 ## 다중 포인터, 이중 포인터
 
-## 다중 포인터를 쓰는 이유, 다중 포인터 예
+- 주소를 저장한 변수의 주소는 어디다가 저장할까? 포인터이다. 그럼 그 포인터에 들어간 데이터의 자료형은?
+- 이중 포인터
+
+  ```c
+  int num = 10;
+  int* p = &num; /* int를 저장하는 포인터 */
+  int** pp = &p; /* int 포인터를 저장하는 포인터 */
+
+  ```
+
+- 포인터 변수를 서로 교체하기
+
+```c
+void swap(int** n1, int** n2)
+{
+    int* tmp = n1;
+
+    *n1 = *n2;
+    *n2 = tmp;
+}
+
+int num1 = 10;
+int num2 = 20;
+
+int* p;
+int* q;
+
+p = &num1;
+q = &num2;
+
+swap(&p, &q);
+
+```
