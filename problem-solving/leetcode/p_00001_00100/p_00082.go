@@ -25,7 +25,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	}
 
 	cur := newHead
-	for cur != nil && cur.Next != nil {
+	for cur != nil {
 		cur.Next = getNextNonDuplicate(cur.Next)
 		cur = cur.Next
 	}
@@ -33,10 +33,13 @@ func deleteDuplicates(head *ListNode) *ListNode {
 }
 
 func getNextNonDuplicate(head *ListNode) *ListNode {
+	if head == nil {
+		return head
+	}
 	cur := head
 	next := cur.Next
-
 	duplicated := -101 // invalid value
+
 	for next != nil {
 		if cur.Val == next.Val {
 			duplicated = cur.Val
@@ -47,6 +50,7 @@ func getNextNonDuplicate(head *ListNode) *ListNode {
 		cur = next
 		next = next.Next
 	}
+
 	if cur.Val != duplicated {
 		return cur
 	}
