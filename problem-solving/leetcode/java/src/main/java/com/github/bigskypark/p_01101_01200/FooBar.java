@@ -1,4 +1,4 @@
-package p_01101_01200;
+package com.github.bigskypark.p_01101_01200;
 
 // 1115. Print FooBar Alternately, https://leetcode.com/problems/print-foobar-alternately/
 

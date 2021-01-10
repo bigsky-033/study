@@ -1,4 +1,4 @@
-package p_01101_01200;
+package com.github.bigskypark.p_01101_01200;
 
 // 1226. The Dining Philosophers, https://leetcode.com/problems/the-dining-philosophers/
 

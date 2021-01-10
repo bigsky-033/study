@@ -1,4 +1,4 @@
-package p_01101_01200;
+package com.github.bigskypark.p_01101_01200;
 
 // 1117. Building H2O, https://leetcode.com/problems/building-h2o/
 

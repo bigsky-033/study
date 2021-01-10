@@ -1,4 +1,4 @@
-package p_01101_01200;
+package com.github.bigskypark.p_01101_01200;
 
 // 1195. Fizz Buzz Multithreaded, https://leetcode.com/problems/fizz-buzz-multithreaded/
 
