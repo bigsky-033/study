@@ -12,6 +12,13 @@ import "strconv"
  *     Right *TreeNode
  * }
  */
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
 func binaryTreePaths(root *TreeNode) []string {
 	var res []string
 	if root == nil {
