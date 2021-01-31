@@ -1,4 +1,4 @@
-package com.github.bigskypark.p_00100_00200;
+package com.github.bigskypark.p_00101_00200;
 
 // 202. Happy Number, https://leetcode.com/problems/happy-number/
 
