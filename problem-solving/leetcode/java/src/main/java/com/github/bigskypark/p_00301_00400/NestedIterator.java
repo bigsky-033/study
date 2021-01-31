@@ -1,4 +1,4 @@
-package com.github.bigskypark.p_00300_00400;
+package com.github.bigskypark.p_00301_00400;
 
 // 341. Flatten Nested List Iterator, https://leetcode.com/problems/flatten-nested-list-iterator/
 

@@ -1,4 +1,4 @@
-package com.github.bigskypark.p_00300_00400;
+package com.github.bigskypark.p_00301_00400;
 
 // 328. Odd Even Linked List, https://leetcode.com/problems/odd-even-linked-list/
 
