@@ -9,9 +9,7 @@ import java.util.List;
 public class Solution00797 {
   public List<List<Integer>> allPathsSourceTarget(int[][] adjMatrix) {
     List<List<Integer>> allPaths = new ArrayList<>();
-    List<Integer> path = new ArrayList<>();
-    path.add(0); // starting point
-    dfs(adjMatrix, 0, allPaths, path);
+    dfs(adjMatrix, 0, allPaths, new ArrayList<>());
     return allPaths;
   }
 
@@ -20,15 +18,16 @@ public class Solution00797 {
       final int currentNode,
       final List<List<Integer>> allPaths,
       final List<Integer> path) {
+    path.add(currentNode);
+
     if (currentNode == adjMatrix.length - 1) {
       allPaths.add(new ArrayList<>(path));
-      return;
+    } else {
+      for (int node : adjMatrix[currentNode]) {
+        dfs(adjMatrix, node, allPaths, path);
+      }
     }
 
-    for (int node : adjMatrix[currentNode]) {
-      path.add(node);
-      dfs(adjMatrix, node, allPaths, path);
-      path.remove(path.size() - 1);
-    }
+    path.remove(path.size() - 1);
   }
 }
