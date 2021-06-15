@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'eclipse'
+}
+
+dependencies {
+    ['armeria',
+     'armeria-logback',
+    ].each {
+        implementation "com.linecorp.armeria:${it}:${armeriaVersion}"
+    }
+
+    // Logging
+    runtimeOnly "ch.qos.logback:logback-classic:${logbackVersion}"
+    runtimeOnly "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+}
