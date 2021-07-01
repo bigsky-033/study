@@ -1,0 +1,5 @@
+rootProject.name = 'grpc-examples'
+
+include 'grpc-spring-lognet'
+include 'grpc-api'
+
