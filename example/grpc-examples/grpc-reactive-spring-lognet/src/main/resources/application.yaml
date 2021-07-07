@@ -1,0 +1,4 @@
+grpc:
+  port: 6565
+  enableReflection: true
+  shutdownGrace: 30
