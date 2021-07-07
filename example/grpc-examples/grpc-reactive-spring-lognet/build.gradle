@@ -24,10 +24,14 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation "io.micrometer:micrometer-registry-prometheus"
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
 
     implementation "io.github.lognet:grpc-spring-boot-starter:${lognetGrpcSpringBootStarterVersion}"
+
+    implementation 'io.lettuce:lettuce-core:6.1.3.RELEASE'
+    implementation 'com.github.ben-manes.caffeine:caffeine:2.9.2'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'io.projectreactor:reactor-test'
 }
 

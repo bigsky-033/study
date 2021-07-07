@@ -1,0 +1,11 @@
+# List
+grpcurl -plaintext localhost:6565 list
+
+# List some grpc service
+grpcurl -plaintext localhost:6565 list simple.Simple
+
+# Send set request
+grpcurl -plaintext -d '{"key": "hello", "value": "world"}' localhost:6565 simple.Simple.Set
+
+# Send get request
+grpcurl -plaintext -d '{"key": "hello"}' localhost:6565 simple.Simple.Get

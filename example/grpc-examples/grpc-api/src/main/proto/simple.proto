@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "bigskypark.grpc.examples.simple";
+option java_outer_classname = "SimpleProto";
+option objc_class_prefix = "SMP";
+
+import "google/protobuf/empty.proto";
+
+package simple;
+
+service Simple {
+  rpc Get (GetRequest) returns (GetResponse) {}
+  rpc Set (SetRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetRequest {
+  string key = 1;
+}
+
+message GetResponse {
+  string value = 1;
+}
+
+message SetRequest {
+  string key = 1;
+  string value = 2;
+}
