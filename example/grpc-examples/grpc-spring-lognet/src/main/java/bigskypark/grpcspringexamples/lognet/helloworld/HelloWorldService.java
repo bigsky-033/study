@@ -1,8 +1,9 @@
 package bigskypark.grpcspringexamples.lognet.helloworld;
 
 import com.google.common.base.Preconditions;
-import io.grpc.examples.GreeterGrpc;
-import io.grpc.examples.GreeterOuterClass;
+import io.grpc.examples.helloworld.GreeterGrpc;
+import io.grpc.examples.helloworld.HelloReply;
+import io.grpc.examples.helloworld.HelloRequest;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcService;
@@ -15,13 +16,11 @@ public class HelloWorldService extends GreeterGrpc.GreeterImplBase {
 
   @Override
   public void sayHello(
-      final GreeterOuterClass.HelloRequest request,
-      final StreamObserver<GreeterOuterClass.HelloReply> responseObserver) {
+      final HelloRequest request, final StreamObserver<HelloReply> responseObserver) {
     Preconditions.checkNotNull(request);
     Preconditions.checkNotNull(responseObserver);
 
-    final var reply =
-        GreeterOuterClass.HelloReply.newBuilder().setMessage("Hello " + request.getName()).build();
+    final var reply = HelloReply.newBuilder().setMessage("Hello " + request.getName()).build();
     responseObserver.onNext(reply);
     responseObserver.onCompleted();
   }
