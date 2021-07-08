@@ -15,7 +15,7 @@ public class RedisConfiguration {
   }
 
   @Bean
-  public RedisStringReactiveCommands<String, String> redisStringReactiveCommands(
+  public RedisStringReactiveCommands<String, String> redisReactiveCommands(
       final RedisClient redisClient) {
     Preconditions.checkNotNull(redisClient);
     return redisClient.connect().reactive();
