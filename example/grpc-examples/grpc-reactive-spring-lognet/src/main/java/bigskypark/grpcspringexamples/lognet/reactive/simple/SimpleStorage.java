@@ -1,28 +1,30 @@
 package bigskypark.grpcspringexamples.lognet.reactive.simple;
 
+import com.github.benmanes.caffeine.cache.AsyncLoadingCache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.common.base.Preconditions;
-import io.lettuce.core.api.reactive.RedisStringReactiveCommands;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import java.time.Duration;
 
 @Service
 public class SimpleStorage {
 
-  private final RedisStringReactiveCommands<String, String> command;
+  private final AsyncLoadingCache<String, String> cache;
 
-  public SimpleStorage(
-      final RedisStringReactiveCommands<String, String> redisStringReactiveCommands) {
-    this.command = Preconditions.checkNotNull(redisStringReactiveCommands);
+  public SimpleStorage(final SimpleAsyncCacheLoader simpleAsyncCacheLoader) {
+    Preconditions.checkNotNull(simpleAsyncCacheLoader);
+    cache =
+        Caffeine.newBuilder()
+            .maximumSize(100L)
+            .expireAfterWrite(Duration.ofSeconds(60L))
+            .refreshAfterWrite(Duration.ofSeconds(10L))
+            .recordStats()
+            .buildAsync(simpleAsyncCacheLoader);
   }
 
-  public Mono<String> getBy(final String key) {
-    Preconditions.checkNotNull(key);
-    return command.get(key);
-  }
-
-  public Mono<String> set(final String key, final String value) {
-    Preconditions.checkNotNull(key);
-    Preconditions.checkNotNull(value);
-    return command.set(key, value);
+  public Mono<String> getOrDefault(final String key, final String defaultValue) {
+    return Mono.fromFuture(cache.get(key)).switchIfEmpty(Mono.fromSupplier(() -> defaultValue));
   }
 }
