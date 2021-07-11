@@ -31,15 +31,14 @@ dependencies {
     implementation 'com.github.ben-manes.caffeine:caffeine:2.9.2'
 
     implementation "io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}"
-    implementation "io.github.resilience4j:resilience4j-ratelimiter:${resilience4jVersion}"
-    implementation "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
-    implementation "io.github.resilience4j:resilience4j-bulkhead:${resilience4jVersion}"
-    implementation "io.github.resilience4j:resilience4j-cache:${resilience4jVersion}"
-    implementation "io.github.resilience4j:resilience4j-timelimiter:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}"
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'io.projectreactor:reactor-test'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
 }
 
 test {
