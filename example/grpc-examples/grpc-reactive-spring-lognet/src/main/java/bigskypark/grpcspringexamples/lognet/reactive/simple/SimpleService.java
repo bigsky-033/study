@@ -25,6 +25,6 @@ public class SimpleService extends ReactorSimpleGrpc.SimpleImplBase {
         .flatMap(r -> simpleStorage.getOrDefault(r.getKey(), "empty"))
         .map(v -> GetResponse.newBuilder().setValue(v).build())
         .onErrorReturn(GetResponse.newBuilder().setValue("error").build())
-        .log();
+        .log(); // add logging because this application is just example application
   }
 }
