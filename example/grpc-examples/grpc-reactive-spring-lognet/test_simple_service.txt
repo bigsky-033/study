@@ -8,3 +8,7 @@ grpcurl -plaintext localhost:6565 list simple.Simple
 grpcurl -plaintext -d '{"key": "hello"}' localhost:6565 simple.Simple.Get
 
 grpcurl -plaintext -d '{"key": "error"}' localhost:6565 simple.Simple.Get
+
+# Make circuit to open status
+
+curl -X POST localhost:8080/admin/circuitbreaker/simpleService/status/FORCED_OPEN
