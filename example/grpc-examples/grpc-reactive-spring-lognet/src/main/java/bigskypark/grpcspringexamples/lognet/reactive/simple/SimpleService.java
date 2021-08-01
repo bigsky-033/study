@@ -6,11 +6,9 @@ import bigskypark.grpc.examples.simple.ReactorSimpleGrpc;
 import com.google.common.base.Preconditions;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerOperator;
-import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcService;
 import reactor.core.publisher.Mono;
 
-@Slf4j
 @GRpcService
 public class SimpleService extends ReactorSimpleGrpc.SimpleImplBase {
 

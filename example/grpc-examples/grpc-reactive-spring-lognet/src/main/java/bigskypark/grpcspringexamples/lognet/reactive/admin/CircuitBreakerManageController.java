@@ -3,14 +3,12 @@ package bigskypark.grpcspringexamples.lognet.reactive.admin;
 import com.google.common.base.Preconditions;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-@Slf4j
 @RequestMapping("/admin")
 @RestController
 public class CircuitBreakerManageController {
