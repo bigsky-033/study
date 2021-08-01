@@ -10,7 +10,7 @@ subprojects {
       target 'src/*/java/**/*.java'
 
       removeUnusedImports()
-      googleJavaFormat() // has its own section below
+      googleJavaFormat()
     }
   }
 }
