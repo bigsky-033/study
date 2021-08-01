@@ -1,7 +1,6 @@
 plugins {
     id 'java'
     id "com.google.protobuf" version "${protobufVersion}"
-    id 'idea'
 }
 
 repositories {
@@ -20,7 +19,6 @@ dependencies {
 }
 
 protobuf {
-    generatedFilesBaseDir = "$projectDir/src/generated"
     protoc {
         artifact = "com.google.protobuf:protoc:${protocVersion}"
     }
@@ -38,6 +36,16 @@ protobuf {
                 option 'enable_deprecated=false'
             }
             reactor {}
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+            srcDirs 'build/generated/source/proto/main/reactor'
         }
     }
 }
