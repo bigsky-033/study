@@ -1,3 +1,16 @@
 plugins {
   id "com.diffplug.spotless" version "5.14.2"
 }
+
+subprojects {
+  apply plugin: "com.diffplug.spotless"
+
+  spotless {
+    java {
+      target 'src/*/java/**/*.java'
+
+      removeUnusedImports()
+      googleJavaFormat() // has its own section below
+    }
+  }
+}

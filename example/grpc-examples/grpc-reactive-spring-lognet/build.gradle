@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
     id 'java'
-    id 'com.diffplug.spotless'
 }
 
 sourceCompatibility = '11'
@@ -11,12 +10,6 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-}
-
-spotless {
-  java {
-    googleJavaFormat()
-  }
 }
 
 repositories {

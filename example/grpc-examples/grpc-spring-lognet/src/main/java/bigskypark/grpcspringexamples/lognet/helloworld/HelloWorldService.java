@@ -5,10 +5,9 @@ import io.grpc.examples.helloworld.GreeterGrpc;
 import io.grpc.examples.helloworld.HelloReply;
 import io.grpc.examples.helloworld.HelloRequest;
 import io.grpc.stub.StreamObserver;
+import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcService;
-
-import javax.annotation.PostConstruct;
 
 @Slf4j
 @GRpcService
