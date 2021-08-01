@@ -3,10 +3,9 @@ package bigskypark.grpcspringexamples.lognet.reactive.simple;
 import com.github.benmanes.caffeine.cache.AsyncLoadingCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.common.base.Preconditions;
+import java.time.Duration;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
 
 @Service
 public class SimpleStorage {

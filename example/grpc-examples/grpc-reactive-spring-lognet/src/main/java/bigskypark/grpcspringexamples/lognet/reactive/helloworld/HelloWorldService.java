@@ -4,11 +4,10 @@ import com.google.common.base.Preconditions;
 import io.grpc.examples.helloworld.HelloReply;
 import io.grpc.examples.helloworld.HelloRequest;
 import io.grpc.examples.helloworld.ReactorGreeterGrpc;
+import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcService;
 import reactor.core.publisher.Mono;
-
-import javax.annotation.PostConstruct;
 
 @Slf4j
 @GRpcService

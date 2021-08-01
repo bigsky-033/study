@@ -3,12 +3,11 @@ package bigskypark.grpcspringexamples.lognet.reactive.simple;
 import com.github.benmanes.caffeine.cache.AsyncCacheLoader;
 import com.google.common.base.Preconditions;
 import io.lettuce.core.api.reactive.RedisStringReactiveCommands;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 
 @Slf4j
 @Component
