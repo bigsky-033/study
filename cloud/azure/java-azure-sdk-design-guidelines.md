@@ -6,6 +6,7 @@
   - Java Azure SDK Design Guidelines, <https://azure.github.io/azure-sdk/java_introduction.html>
   - Azure-sdk-for-java Github Repository, <https://github.com/Azure/azure-sdk-for-java>
 - 문서에서 `*` 를 통해 표시한 내용은 개인적인 생각을 담은 부분이다.
+- 내용을 한글로 옮길 때 있어 모호한 부분이 있거나 한글 번역이 어색해 보이는 부분은 괄호 안에 영어를 표기했다.
 
 ## Design Principles
 
@@ -44,18 +45,31 @@ Azure의 서비스는 자바 개발자들에게 하나 이상의 *service client
 
 ### Service Clients
 
-### Async Service Clients
+개발자들이 *Azure의 서비스*(\* 이하 서비스)을 Azure SDK를 통해 접근하게 되면 진입점(main starting points)이 되는 곳이 *Service Clients*(\* 이하 서비스 클라이언트 또는 클라이언트) 이다. 때문에 이 클래스들은 찾기 쉬워야 한다. 각 서비스의 클라이언트 라이브러리는 메인 네임스페이스에 클라이언트를 하나 이상 가지고 있어야 한다. 가이드라인의 이 섹션에서는 service client를 디자인 하기 위한 패턴들을 다룬다. 자바에서는 synchronous 클라이언트와 asynchronous 클라이언트가 별도로 각각 필요하다. 때문에 이 섹션에서는 일반적인 service client 에 대한 가이드, sync 클라이언트에 대한 가이드 그리고 async 클라이언트에 대한 가이드 순서로 가이드를 진행한다.
 
-### Service Client Creation
+서비스에게 HTTP(또는 기타의 방법)로 요청을 보낸다고 해서 전부 서비스 클라이언트가 되는 것은 아니다. 서비스 클라이언트의 지정은 서비스에 고유하게 표시된다. 때문에 서비스 클라이언트로 지정이 되는 클래스들은 직접 구성될 수 있는(directly constructed) 클래스여야 한다. 또한 서비스 클라이언트 지정은 클라이언트를 직접 생성하는 것이 적절한 경우에만 적용된다. 리소스를 고유하게 식별할 수 없거나 타입을 직접 작성할 필요가 없는 경우에는 서비스 클라이언트 지정을 적용하면 안 된다.
 
-### Service Methods
+- 서비스 클라이언트의 이름은 *Client*로 끝나야 한다. 예를 들어 `ConfigurationClient`와 같은 식이다.
+- 서비스 클라이언트 클래스에는 항상 @ServiceClient 라는 어노테이션이 붙어야 한다.
+- 사용자가 상호 작용(interact)할 가능성이 가장 높은 서비스 클라이언트 타입을 클라이언트 라이브러리의 루트 패키지 내에 배치해야 한다. 예를 들어 `com.azure.<group>.servicebus` 와 같은 식이다. 특화된 서비스 클라이언트들은 서브 패키지에 두어야 한다.
+  - \* `com.azure.messaging.servicebus` 를 보면, 이 패키지 바로 아래에 `ServiceBusClientBuilder` 와 이 빌더가 생성하는 클래스들이 있다. 그리고 서브 패키지에 `administration(com.azure.messaging.servicebus.administration)` 이 있고 이 밑에 `ServiceBusAdministrationClientBuilder`와 이 빌더가 생성하는 클래스들이 있다. 이런 구조를 말하는 게 아닐까 싶다.
+- 모든 서비스 클라이언트 클래스들은 불변(immutable)인 것 그리고 상태가 없어야(stateless) 한다.
+- Sync API들을 제공하는 클라이언트 클래스와 Async API들을 제공하는 클라이언트 클래스는 별도의 클래스로 분리되어 있어야 한다.
 
-### Non-Service Methods
+#### Sync Service Clients
 
-### Methods Returning Collections (Paging)
+#### Async Service Clients
 
-### Methods Invoking Long-Running Operations
+#### Service Client Creation
 
-### Conditional Request Methods
+#### Service Methods
 
-### Hierachical Clients
+#### Non-Service Methods
+
+#### Methods Returning Collections (Paging)
+
+#### Methods Invoking Long-Running Operations
+
+#### Conditional Request Methods
+
+#### Hierachical Clients
