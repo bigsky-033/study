@@ -1,2 +1,4 @@
 rootProject.name = 'azure-examples'
 include 'spring-data-r2dbc-sql-server'
+include 'getting-started-java'
+
