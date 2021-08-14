@@ -1,0 +1,28 @@
+plugins {
+    id 'com.diffplug.spotless' version "5.14.2"
+}
+
+allprojects {
+    apply plugin: 'com.diffplug.spotless'
+    apply plugin: 'groovy'
+
+    spotless {
+        java {
+            target 'src/*/java/**/*.java'
+
+            removeUnusedImports()
+            googleJavaFormat()
+        }
+
+        groovy {
+            importOrder()
+            excludeJava()
+            greclipse()
+        }
+
+        groovyGradle {
+            target '*.gradle' // default target of groovyGradle
+            greclipse()
+        }
+    }
+}
