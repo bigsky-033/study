@@ -8,5 +8,5 @@ logging:
 spring:
   r2dbc:
     url: r2dbc:pool:mssql://workshop-db.database.windows.net:1433/demo
-    username: spring@workshop-db
-    password: xoals1234#
+    username: ***
+    password: ***
