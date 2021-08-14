@@ -1,0 +1,1 @@
+- Reference: https://docs.microsoft.com/ko-kr/azure/developer/java/spring-framework/configure-spring-data-r2dbc-with-azure-sql-server
