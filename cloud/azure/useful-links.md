@@ -8,3 +8,7 @@
 ## Security
 
 - Quick steps: Create and use an SSH public-private key pair for Linux VMs in Azure, <https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys>
+
+## Troubleshoot
+
+- Resolve errors for resource provider registration, <https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider>
