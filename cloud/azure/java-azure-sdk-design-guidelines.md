@@ -193,11 +193,62 @@ Azure의 서비스는 자바 개발자들에게 하나 이상의 *service client
 
 #### Methods Invoking Long-Running Operations
 
+어떤 서비스에 대한 작업들은 시간이 오래(수시간 또는 수일) 걸린다. 이런 연산을 *Long Running Operations* 또는 *LROs* 라고 부른다. 이러한 작업들은 결과를 바로 반환하지 않는다. 작업을 시작하고 진행 상황을 폴링하다가 최종적으로 결과를 가져오는 식이다.
+
+`azure-core` 라이브러리는 LROs를 더 단순하게 이용하기 위한 타입들을 지원한다. Sync 클라이언트를 위해 `SyncPoller<T>`를 지원하고 async 클라이언트를 위해 `PollerFlux<T>`를 각각 지원한다. 이 클래스들은 LRO를 나타내고 폴링, 상태 변화를 위해 기다리는 링 그리고 최종 작업의 결과를 받아오는 것과 같은 것들을 지원한다.
+
+- **상세 구현 관련**
+  - Long running operations 를 나타내기 위해 `SyncPoller`와 `PollerFlux`를 사용하라.
+  - Long running operaitons 를 위해 poller를 리턴하는 메서드의 이름을 지을 땐 `begin`을 접두사로 붙여라.
+  - Poller(`SyncPoller` 또는 `PollerFlux`)의 최종 결과를 `void`로 두지 말아라(`SyncPoller<T, U>` 또는 `PollerFlux<T, U>` 에서의 `U`를 의미한다). 사용자에게 별다른 이득을 제공하지 못 한다.
+
 #### Conditional Request Methods
+
+조건부 요청은 일반적으로 HTTP 헤더를 바탕으로 행해진다. 기본적인 용도는 널리 알려진 값과 `ETag`를 일치시키는 헤더를 제공하는 것이다. `ETag`는 리소스의 단일 버전을 나타내는 opaque identifier 이다. 예를 들어 다음과 같은 헤더를 더하는 것은 "`ETag`에 의해 지정된 레코드의 버전이 동일하지 않은 경우"를 의미합니다.
+
+- `If-Not-Match: "etag-value"`
+
+헤더를 통해 다음과 같은 것들을 테스트해볼 수 있습니다.
+(\* 아래의 것들은 번역하지 않는 것이 더 자연스러워 영어 그대로 적습니다)
+
+- Unconditionally (no addiotnal headers)
+- If (not) modified since a version (`If-Match` and `If-Not-Match`)
+- If (not) modified since a date (`If-Modified-Since` and `If-Unmodified-Since`)
+- If (not) present (`If-Match` and `If-Not-Match` with a `ETag=*` value)
+
+모든 서비스가 이런 시맨틱(semantics)를 모두 지원하는 것은 아니며 어떤 경우에는 이것 모두를 지원하지 않을 수도 있습니다. 또한 개발자들은 `ETag` 및 조건부 요청에 대해 다양한 이해 수준을 가지고 있으므로 API 표면에서 이를 추상화하는 것이 가장 좋다. 우리가 고려해야 할 두 가지 조건부 요청은 다음과 같다.
 
 ##### Safe conditional requests (e.g. GET)
 
+일반적으로 "업데이트 캐시" 시나리오에서 대역폭(bandwidth)을 절약하기 위해 사용된다. 즉 내가 캐시의 값을 가지고 있을 때 이 값이 변경되었을 경우에만 나에게 데이터를 전송해달라고 요청하는 것이다. 그러면 서비스는 200 또는 값이 변경되지 않았음을 나타내는 304 응답 코드를 반환한다.
+
 ##### Unsafe conditional requests (e.g. POST, PUT, or DELETE)
+
+이것들은 일반적으로 낙관적인 동시성 시나리오(optimistic concurrency scenario)에서 업데이트 손실을 방지하기 위한 용도로 사용된다. 예를 들어, 보유하고 있는 캐시의 값은 수정했지만 내가 갖고 있는 것과 같은 것을 갖고 있지 않으면 서비스 버전을 업데이트 하는 것을 막기 위해 사용되는 식이다. 이것은 성공 또는 412 에러 응답 코드를 반환하는데 이는 호출자에게 업데이트 성공을 위해 다시 시도해야 함을 알려준다.
+
+이러한 두 가지의 경우는 클라이언트 라이브러리에서 다르게 다루어진다. 그러나 두 케이스 모두 같은 방식으로 호출이 이루어진다. 메서드의 시그니처는 다음과 같은 식이다.
+
+- `client.<method>(<item>, requestOptions)`
+
+`requestOptions` 필드는 HTTP 요청에 대해 전제 조건(preconditions)을 제공한다. 메서드에 전달되는 아이템에서 `ETag` 값을 가져오는 게 가능한 경우라면 그 값을 사용하거나 그렇지 않으면 메서드의 인자들을 가져와 사용한다. `ETag` 값을 알 수 없는 경우엔 연산은 조건부일 수 없다. 라이브러리 개발자가 사전 조건(preconditions) 헤더의 고급 사용을 지원할 필요가 없는 경우엔 boolean parameter 를 둘 수도 있다. 예를 들어 다음과 같은 boolean 이름이 conditional operator 를 대신해 사용될 수 있다(true로 두는 것이 그 것을 사용하는 것을 의미한다):
+
+- `onlyIfChanges`
+- `onlyIfUnchanged`
+- `onlyIfMissing`
+- `onlyIfPresent`
+
+모든 경우에 각 조건식은 "opt-in"이며 기본 값은 무조건 작업을 수행하는 것이다.
+
+- Conditional operation의 리턴 값은 조심스럽게 고려되어야 한다. Safe opreator(예를 들어 GET)의 경우엔 바디에 참조할 값이 없으므로 값에 액세스할 경우 에러를 던진다(또는 `204 No Content` 응답과 같은 컨벤션을 따른다).
+  - \* 본문에 *will throw if* 라고만 되어 있는데 throw error가 아닐까 싶어서 그렇게 해석했다. 틀릴 수 있다.
+- Unsafe operator(예를 들어 PUT, DELETE 또는 POST)의 경우 `Precondition Failed` 에러가 발생하거나 또는 `Conflict` 응답을 받을 경우 특정 에러를 발생시킨다.
+
+- **상세 구현 관련**
+  - 서비스에 대한 조건부 검사(conditional check)을 허용하는 서비스 메서드에 대해 `conditions` 퍼러미터를 받아들여야 한다.
+  - `ETag`를 사용하여 조건부 검사를 활성화하려면 필요에 따라 서비스 메서드에 대해 추가적인 boolean 또는 enum parameter를 받아들여야 한다.
+  - 조건부 연산이 지원되는 경우 `ETag` 필드를 객체 모델의 일부로 포함해야 한다.
+  - 서비스로 부터 `304 Not Modified` 응답을 받았을 때 그 언어에서 이 응답이 에러로 판단되는 게 관용적인 경우가 아니라면, 에러를 발생시켜서는 안 된다.
+  - 서비스로부터 `412 Precondition Failed` 응답 또는 `409 Conflict` 응답을 받았을 때 분명한 에러를 발생시켜야 한다.
 
 #### Hierachical Clients
 
