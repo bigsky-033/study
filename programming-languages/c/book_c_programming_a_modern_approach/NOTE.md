@@ -83,3 +83,26 @@ int main(void)
 
 ```
 
+- 변수가 기본 값을 갖고 있지 않고 프로그램에 의해 값이 할당되지 않은 경우를 초기화되지 않음(uninitialized)라고 한다.
+  - 초기화되지 않은 변수에 접근하려고 하면 예상할 수 없는 결과가 나오거나 프로그램이 깨질(crash) 수 있다.
+- printf는 값이 필요한 자리에 식을 넣을 수도 있다. 예를 들어 `printf("%d\n", volume);` 대신 `printf("%d\n", height * length * width);`로 쓸 수 있다. 이는 C의 일반적인 원칙을 보여주기도 한다. 이 일반적인 원칙은 값이 필요한 자리에 같은 타입의 식을 쓸 수 있다(Wherever a value is needed, any expression of the same type will do)이다.
+
+
+## 3. Formatted Input/Output
+
+### *3. Formatted Input/Output* 에서 다루는 것들
+
+- *scanf*와 *printf*에 대해 다룬다.
+
+### 노트 - *3. Formatted Input/Output*
+
+- Conversion specification: `%`뒤에 오는 문자를 통해 출력할 포맷을 지정해줄 수 있는 것과 관련된 스펙, 정의. `%d`, `%f` 등이 여기에 해당한다.
+- Conversion specification을 일반화하면 `%m.pX`또는 `%-m.pX`을 가질 수 있다. 여기서 m과 p는 정수 상수이고 X는 문자이다. m과 p는 옵셔널하다. 만약 p가 생략되면 m과 p를 구분하는 구분 점도 드랍된다. 예를 들어 %10.2f에서 m은 10 p는 2 그리고 X는 f이다. %10f에서 m은 10이고 p는 없는 것이다. %.2f에서 m은 없고 p는 2인 것이다.
+  - *m* 은 minimum field width를 나타내는데 출력해야 할 문자열의 최소 길이를 의미한다. 만약 출력할 문자열의 길이보다 m이 크다면 출력할 문자열 앞에 공백이 추가된다. 만약 출력할 문자열의 길이보다 m이 작다면 자동으로 확장된다. %4d를 두고 12345를 출력한다고 하면 생략되는 것이 아니라 그대로 12345가 출력된다. %-4d 처럼 마이너스 부호를 두는 것은 공백이 있을 때 왼쪽 정렬이 되게 하는 것을 의미한다. 예를 들어 (%4d, 123)을 하면 (공백)123이 출력 되는데 (%-4d, 123)을 하면 123(공백)이 출력된다.
+  - *p*는 정밀도(precision)을 의미한다. 정의가 좀 모호할 수 있다. 왜냐하면 X에 따라 의미가 달라질 수 있기 때문이다.
+  - *X*로 주로 사용되는 것들은 다음과 같다.
+    - *d*: integer를 10진수로 표현한다. 여기서 p는 화면에 표시해야 할 최소 숫자의 갯수를 나타낸다. 만약 p가 생략되면 1을 기본 값으로 한다. 따라서 %d는 %.1d와 같다.
+    - *e*: floating-point number를 exponential format으로 표현한다. p는 decimal point 이후에 표현해야 할 숫자의 갯수를 의미한다. 기본 값은 6이다. 만약 이 값이 0이면 decimal point는 표현되지 않는다.
+    - *f*: floating-point number를 fixed decimal format으로 표현한다. exponent가 없다. p의 의미는 e에서와 같다. 
+    - *g*: floating-point number를 숫자의 크기에 따라 exponential format 또는 fixed decimal format으로 표현한다. p는 화면에 표시할 maximum number of significant digits을 의미한다. f와 다르게 g는 trailing zeros를 표시하지 않는다. 또한 출력해야 할 값이 decimal point 뒤에 숫자가 없으면 decimal point를 출력하지 않는다.
+
