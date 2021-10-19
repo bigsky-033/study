@@ -105,4 +105,21 @@ int main(void)
     - *e*: floating-point number를 exponential format으로 표현한다. p는 decimal point 이후에 표현해야 할 숫자의 갯수를 의미한다. 기본 값은 6이다. 만약 이 값이 0이면 decimal point는 표현되지 않는다.
     - *f*: floating-point number를 fixed decimal format으로 표현한다. exponent가 없다. p의 의미는 e에서와 같다. 
     - *g*: floating-point number를 숫자의 크기에 따라 exponential format 또는 fixed decimal format으로 표현한다. p는 화면에 표시할 maximum number of significant digits을 의미한다. f와 다르게 g는 trailing zeros를 표시하지 않는다. 또한 출력해야 할 값이 decimal point 뒤에 숫자가 없으면 decimal point를 출력하지 않는다.
+- scanf에서 변수의 이름 앞에 &를 빼먹으면 예상되지 않은 결과를 낳을 수 있다.
+- scanf로 데이터를 읽는 건 강력한 방법이지만 사실 많은 C 프로그래머들은 잘 사용하지 않는다. 그냥 데이터를 다 character form으로 읽고 나중에 타입을 변경하는 걸 더 많이 활용한다.
+- scanf에서 마지막에 \n 같은 것을 넣는 건 좋은 생각이 아니다. 문제를 일으킬 수 있다.
+
+## 4. Expressions
+
+### *4. Expressions* 에서 다루는 것들
+
+- C의 기본적인 연산자들 대해 다룬다. 산술(arithmetic), 할당(assignment), 증가/감소(increment/decrement) 연산자들에 대해 다룬다. 산술 연산자들에 대해 다룰 때는 각 연산자들의 우선 순위에 대해서도 다룬다.
+- C에서 연산자들이 어떻게 평가되는지에 대해 다룬다.
+- Expression statement에 대해 다룬다.
+
+### 노트 - *4. Expression*
+
+- 산술 연산자에서 int와 float 타입이 피연산자에 섞여 있으면 결과는 float가 된다.
+- 산술 연산자 중 /의 경우 두 피연산자가 모두 integer일 때 결과의 fractional part를 truncate한다.
+- % 연산자의 경우 integer operand를 필요로 한다.
 
