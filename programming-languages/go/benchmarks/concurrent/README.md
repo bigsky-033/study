@@ -43,18 +43,18 @@ ok  	github.com/bigsky-033/study/go/benchmarks/concurrent	156.021s
 #### Test 1-2 - Book counts: 100
 
 ```
-$ go test -bench=OnlyReadAndWrite -cpu=4 -benchtime=30s
+$ go test -bench=AllOperations -cpu=4 -benchtime=30s
 
 goos: linux
 goarch: amd64
 pkg: github.com/bigsky-033/study/go/benchmarks/concurrent
 cpu: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
-BenchmarkBookDBWithSyncMapOnlyReadAndWrite-4        	   64257	    552467 ns/op
-BenchmarkBookDBWithChannelSyncOnlyReadAndWrite-4    	   13393	   2673528 ns/op
-BenchmarkBookDBWithLockOnlyReadAndWrite-4           	   47743	    752244 ns/op
-BenchmarkBookDBWIthChannelAsyncOnlyReadAndWrite-4   	   24369	   1506014 ns/op
+BenchmarkBookDBWithSyncMapAllOperations-4        	   56673	    631984 ns/op
+BenchmarkBookDBWithChannelSyncAllOperations-4    	   10000	   3289001 ns/op
+BenchmarkBookDBWithLockAllOperations-4           	   29366	   1264680 ns/op
+BenchmarkBookDBWIthChannelAsyncAllOperations-4   	   17553	   1996518 ns/op
 PASS
-ok  	github.com/bigsky-033/study/go/benchmarks/concurrent	199.307s
+ok  	github.com/bigsky-033/study/go/benchmarks/concurrent	180.764s
 ```
 
 ### Test 2 - Only Read & Write
