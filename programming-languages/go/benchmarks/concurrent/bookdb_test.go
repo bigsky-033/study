@@ -11,7 +11,7 @@ const (
 	numReadInstances     = 2000
 	numWriteInstances    = 1000
 	numSnapshotInstances = 100
-	numBookCounts        = 1000
+	numBookCounts        = 100
 )
 
 func TestBasicFunctionalityForBookDBWithSyncMap(t *testing.T) {
