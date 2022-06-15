@@ -1,13 +1,13 @@
 # 100 Days of Code with Apache Kafka
 
-https://developer.confluent.io/100-days-of-code/ 를 따라 공부한 내용을 정리한 문서입니다. 각 일자 별 공부한 자료들, 정리한 내용을 적고 필요하다면 간략한 메모를 남깁니다.
+<https://developer.confluent.io/100-days-of-code/> 를 따라 공부한 내용을 정리한 문서입니다. 각 일자 별 공부한 자료들, 정리한 내용을 적고 필요하다면 간략한 메모를 남깁니다.
 
 ## Day 1 (20220612)
 
 - 공부한 자료
-  - https://kafka.apache.org/intro
-    - https://youtu.be/FKgi3n-FyNU
-  - https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/
+  - <https://kafka.apache.org/intro>
+  - <https://youtu.be/FKgi3n-FyNU>
+  - <https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/>
 - 정리한 내용
   - [Set up guide](setup.md)
 - 메모
@@ -18,8 +18,8 @@ https://developer.confluent.io/100-days-of-code/ 를 따라 공부한 내용을 
 ## Day 2 (20220613)
 
 - 공부한 자료
-  - https://developer.confluent.io/learn-kafka/apache-kafka/events/
-  - https://developer.confluent.io/learn-kafka/apache-kafka/get-started-hands-on/
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/events/>
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/get-started-hands-on/>
 - 메모
   - 카프카에서 가장 중요한 것은 Event이다. Kafka에서 이벤트란, `an event is a thing that has happened, that's it` 이다. 어떤 것이든 될 수 있다. 예를 들어 IOT, Business process change, User interaction, Microservice output 등이 될 수도 있다.
   - Event를 다른 말로 표현하면 `Notification(when) + State`이다.
@@ -29,8 +29,8 @@ https://developer.confluent.io/100-days-of-code/ 를 따라 공부한 내용을 
 ## Day 3 (20220614)
 
 - 공부한 자료
-  - https://developer.confluent.io/learn-kafka/apache-kafka/topics/
-  - https://www.confluent.io/blog/okay-store-data-apache-kafka/
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/topics/>
+  - <https://www.confluent.io/blog/okay-store-data-apache-kafka/>
 - 메모
   - Topic은 비슷한 종류의 이벤트들을 모아두는 컨테이너이다.
   - Kafka를 queue라고 부르는 것은 엄밀히 말했을 때 정확하지 않을 수 있다. Topic은 `durable logs of events`이다.
@@ -47,3 +47,14 @@ https://developer.confluent.io/100-days-of-code/ 를 따라 공부한 내용을 
       - 메세지의 단건 처리 외에도, real-time streaming 처리를 가능하게 한다.
   - 그러나 카프카를 메인 스토리지로 쓴다는 것은 운영에 어려움을 더할 수 있다.
   - 또한 다양한 쿼리에 있어서는 취약할 수 있다. 분석 DB, 검색 엔덱스, 캐시 등 각각의 스토리지 기술들은 고유한 장점이 있다.
+
+## Day 4 (20220615)
+
+- 공부한 자료
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/partitions/>
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/partitions-hands-on/>
+- 메모
+  - Kafka는 분산 시스템으로서 시스템의 부하를 분산하고 수평 확장이 가능하게 하기 위해 토픽의 로그를 여러 파티션으로 나누어 저장할 수 있게 한다.
+  - 어떤 메세지가 토픽의 어떤 파티션으로 전달될지를 결정하는 것이 key의 역할이다. Key를 기반으로 해시를 해서 로그가 저장될 파티션을 결정한다. 같은 key를 가진 로그는 같은 파티션으로 전달됨이 보장된다.
+  - 이로 인해 이론상 파티션 크기의 불균형이 생길 수 있고 이로 인해 문제가 생길 수 있긴 한데 현실에서 문제가 될 가능성은 높지 않다.
+  - Hands on은 confluent kafka에 파티션 수가 서로 다른 토픽을 생성하고 확인하는 것 이었다. 별도로 해보지는 않았다.
