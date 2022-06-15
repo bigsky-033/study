@@ -1,13 +1,13 @@
 # 100 Days of Code with Apache Kafka
 
-https://developer.confluent.io/100-days-of-code/ 를 따라 공부한 내용을 정리한 문서입니다. 각 일자 별 공부한 자료들, 정리한 내용을 적고 필요하다면 간략한 메모를 남깁니다.
+<https://developer.confluent.io/100-days-of-code/> 를 따라 공부한 내용을 정리한 문서입니다. 각 일자 별 공부한 자료들, 정리한 내용을 적고 필요하다면 간략한 메모를 남깁니다.
 
 ## Day 1 (20220612)
 
 - 공부한 자료
-  - https://kafka.apache.org/intro
-    - https://youtu.be/FKgi3n-FyNU
-  - https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/
+  - <https://kafka.apache.org/intro>
+  - <https://youtu.be/FKgi3n-FyNU>
+  - <https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/>
 - 정리한 내용
   - [Set up guide](setup.md)
 - 메모
@@ -18,8 +18,8 @@ https://developer.confluent.io/100-days-of-code/ 를 따라 공부한 내용을 
 ## Day 2 (20220613)
 
 - 공부한 자료
-  - https://developer.confluent.io/learn-kafka/apache-kafka/events/
-  - https://developer.confluent.io/learn-kafka/apache-kafka/get-started-hands-on/
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/events/>
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/get-started-hands-on/>
 - 메모
   - 카프카에서 가장 중요한 것은 Event이다. Kafka에서 이벤트란, `an event is a thing that has happened, that's it` 이다. 어떤 것이든 될 수 있다. 예를 들어 IOT, Business process change, User interaction, Microservice output 등이 될 수도 있다.
   - Event를 다른 말로 표현하면 `Notification(when) + State`이다.
@@ -29,8 +29,8 @@ https://developer.confluent.io/100-days-of-code/ 를 따라 공부한 내용을 
 ## Day 3 (20220614)
 
 - 공부한 자료
-  - https://developer.confluent.io/learn-kafka/apache-kafka/topics/
-  - https://www.confluent.io/blog/okay-store-data-apache-kafka/
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/topics/>
+  - <https://www.confluent.io/blog/okay-store-data-apache-kafka/>
 - 메모
   - Topic은 비슷한 종류의 이벤트들을 모아두는 컨테이너이다.
   - Kafka를 queue라고 부르는 것은 엄밀히 말했을 때 정확하지 않을 수 있다. Topic은 `durable logs of events`이다.
