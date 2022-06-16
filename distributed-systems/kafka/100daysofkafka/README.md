@@ -58,3 +58,12 @@
   - 어떤 메세지가 토픽의 어떤 파티션으로 전달될지를 결정하는 것이 key의 역할이다. Key를 기반으로 해시를 해서 로그가 저장될 파티션을 결정한다. 같은 key를 가진 로그는 같은 파티션으로 전달됨이 보장된다.
   - 이로 인해 이론상 파티션 크기의 불균형이 생길 수 있고 이로 인해 문제가 생길 수 있긴 한데 현실에서 문제가 될 가능성은 높지 않다.
   - Hands on은 confluent kafka에 파티션 수가 서로 다른 토픽을 생성하고 확인하는 것 이었다. 별도로 해보지는 않았다.
+
+## Day 5 (20220616)
+
+- 공부한 자료
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/brokers/>
+  - <https://docs.confluent.io/platform/current/control-center/brokers.html>
+- 메모
+  - 브로커의 단순한 정의는 카프카 프로세스를 실행하고 있는 무언가(컴퓨터, 인스턴스, 컨테이너 등)이다.
+  - 카프카의 파티션을 관리하며 요청을 읽고 쓴다.
