@@ -67,3 +67,26 @@
 - 메모
   - 브로커의 단순한 정의는 카프카 프로세스를 실행하고 있는 무언가(컴퓨터, 인스턴스, 컨테이너 등)이다.
   - 카프카의 파티션을 관리하며 요청을 읽고 쓴다.
+
+## Day 6 (20220618)
+
+- 공부한 자료
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/producers/>
+  - <https://docs.confluent.io/platform/current/clients/producer.html>
+  - <https://github.com/confluentinc/confluent-kafka-go>
+  - <https://github.com/Shopify/sarama>
+- 메모
+  - 카프카를 사용하는 어플리케이션 개발이란 프로듀서와 컨슈머를 개발하는 것을 의미한다. 토픽에서 메세지를 읽고 쓰기 위한 코드를 작성하는 것이다.
+  - 카프카 프로듀서는 단순히 메세지를 토픽에 넣는 것 이외에 커넥션 풀의 관리, 네트워크 버퍼링, 파티셔닝 등의 역할을 한다.
+  - confluent의 프로듀서 문서의 내용은 중요한 컨셉을 잘 설명하고 있다. 핵심 내용은 다음과 같다.
+    - 카프카 프로듀서의 핵심 기능은 메세지의 파티셔닝, 메세지 전송에 대한 보장,배치/압축 처리를 통한 높은 처리량 달성과 같은 점이다.
+    - 카프카 프로듀서의 설정을 분류한다면 크게 다음과 같은 카테고리 들로 분류할 수 있다. 이 분류를 통해 카프카 프로듀서의 핵심이 무엇인지를 알 수 있다. 각 분류의 자세한 내용은 문서를 참고하자.
+      - Core Configuration
+      - Message Durability
+      - Message Orderding
+      - Batching and Compression
+      - Queuing Limits
+  - golang 카프카 클라이언트로는 confluent에서 제공하는 confluent-kafka-go와 Shopify가 개발한 sarama가 유명한 것 같다. 간단히 검색을 통해 파악한 각각의 장단점은 다음과 같다.
+    - confluent-kafka-go는 Librdkafka를 래핑한 라이브러리로 거기서 오는 장단점을 함께 갖고 있다. 장점은 안정적이라는 것, 단점은 cgo에서 오는 점들이다.
+    - sarama의 경우 장점은 pure-go, 단점은 상대적으로 안정성이 떨어진다는 점이다.
+  - 두 라이브러리 모두 공부를 해나가며 직접 사용해 볼 것이고 장단점을 더 자세히 파악해 보려고 한다.
