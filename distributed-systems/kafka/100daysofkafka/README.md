@@ -120,3 +120,19 @@
       - Group Configuration
       - Offest Management
   - Java 구현체와 librdkafka-based clients(C/C++, Python, Go 그리고 C#)의 내부 동작 방식이 좀 다르다.
+
+## Day 8 (20220620)
+
+- 공부한 자료
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/kafka-connect/>
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/kafka-connect-hands-on/>
+  - <https://docs.confluent.io/platform/current/connect/index.html>
+  - <https://youtu.be/dXXfkoXXBbs>
+- 메모
+  - 세상의 모든 데이터가 카프카에 있는 것은 아니기 때문에 다른 데이터 소스에서 카프카로 데이터를 넣거나 또는 카프카에서 다른 곳으로 데이터를 옮겨야 하는 경우가 있다. 그런 역할을 하는 것이 Kafka Connect이다. 예를 들어 카프카에 있는 데이터를 엘라스틱서치에 넣는 것과 같은 케이스이다.
+  - Kafka Connect를 사용할 때 복잡하지 않은 경우라면 간단히 설정 파일을 작성하고 실행하는 것을 통해 카프카에서 데이터를 다른 곳에 옮기거나 다른 곳에서 카프카로 옮길 수 있다.
+  - Source Connector는 Producer, Sink connect는 Consumer 이다.
+  - Confluent hub에서 이미 작성된 다양한 Connector를 볼 수 있다. 영상에서 강조했듯이 대부분의 데이터를 옮기는 작업은 특별할 게 없다. 때문에 가급적이면 직접 코드를 작성하기 전에 검증된 솔루션이 있는지 찾아보고 있으면 그것을 쓰는 것을 권장한다.
+    - Confluent는 이와같이 Ecosystem 으로서의 카프카를 강조하는 듯하다.
+  - Hands on은 간단한 클릭을 통해 클라우드 환경에서 Kafka Connector - Source 를 작성하는 법을 보여준다. 단순한 경우라면 정말 이렇게 간단하게 될 것 같다.
+  - Robin Moffatt 채널의 영상들이 흥미롭다. 퀄리티가 매우 좋은듯하다. Kafka Connector 구조의 핵심은 Connector, Transform, Converter이다.
