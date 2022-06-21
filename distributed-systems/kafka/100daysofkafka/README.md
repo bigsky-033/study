@@ -141,7 +141,6 @@
 
 - 공부한 자료
   - <https://developer.confluent.io/learn-kafka/apache-kafka/kafka-streams/>
-  - <https://www.confluent.io/blog/introducing-kafka-streams-stream-processing-made-simple/>
   - <https://www.confluent.io/blog/kafka-streams-tables-part-1-event-streaming/>
   - <https://github.com/confluentinc/examples/tree/7.1.1-post/connect-streams-pipeline>
 - 메모
@@ -150,3 +149,11 @@
   - 카프카 스트림은 Java API이다. Stream Processing에서 필요한 Filtering, Grouping, Aggregating, Joining 과 같은 필수적인 기능들을 제공하기 위한 API 들의 모음이다.
   - Scalable, fault-tolerant, 상태관리 등의 기능도 제공한다.
   - 카프카 스트림은 라이브러리이다. 독립된 컴포넌트가 아니기 때문에 Spring과 같은 프레임워크와 함께 사용해 구현이 가능하다.
+  - Streams and Tables in Apache Kafka 글에서 인상 깊었던 부분들:
+    - An event stream records the history of what happened in the world as a sequence of events.
+    - A table represents the state of the world.
+    - Event와 Table의 차이를 위와 같이 설명해 주고 그를 그림으로 도식화해 준 부분이 좋았다.
+    - Stream은 immutable data인데 반해 table은 mutable data이다.
+    - Stream-table duality는 event sourcing에서 말하는 개념 같았다.
+  - Streams and Tables in Apache Kafka 이 시리즈는 전부 읽어 보아야겠다.
+  - 100 days of code 과정을 통해 공부하는 동안 이벤트를 기반으로 한 아키텍처에 대해서도 많이 공부할 수 있을 것 같아 좋다.
