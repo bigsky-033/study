@@ -136,3 +136,24 @@
     - Confluent는 이와같이 Ecosystem 으로서의 카프카를 강조하는 듯하다.
   - Hands on은 간단한 클릭을 통해 클라우드 환경에서 Kafka Connector - Source 를 작성하는 법을 보여준다. 단순한 경우라면 정말 이렇게 간단하게 될 것 같다.
   - Robin Moffatt 채널의 영상들이 흥미롭다. 퀄리티가 매우 좋은듯하다. Kafka Connector 구조의 핵심은 Connector, Transform, Converter이다.
+
+## Day 9 (20220621)
+
+- 공부한 자료
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/kafka-streams/>
+  - <https://www.confluent.io/blog/kafka-streams-tables-part-1-event-streaming/>
+  - <https://github.com/confluentinc/examples/tree/7.1.1-post/connect-streams-pipeline>
+- 메모
+  - 카프카 컨슈머의 API는 매우 심플하다. 따라서 단순한 케이스 이외에 무언가를 구현하려면 많은 것들을 직접 해줘야 한다. Time window, 순서에 맞지 않는 메세지, lookup 테이블 등의 케이스, 키를 이용한 집계 등 이다.
+    - 많은 경우 stateful operation이다.
+  - 카프카 스트림은 Java API이다. Stream Processing에서 필요한 Filtering, Grouping, Aggregating, Joining 과 같은 필수적인 기능들을 제공하기 위한 API 들의 모음이다.
+  - Scalable, fault-tolerant, 상태관리 등의 기능도 제공한다.
+  - 카프카 스트림은 라이브러리이다. 독립된 컴포넌트가 아니기 때문에 Spring과 같은 프레임워크와 함께 사용해 구현이 가능하다.
+  - Streams and Tables in Apache Kafka 글에서 인상 깊었던 부분들:
+    - An event stream records the history of what happened in the world as a sequence of events.
+    - A table represents the state of the world.
+    - Event와 Table의 차이를 위와 같이 설명해 주고 그를 그림으로 도식화해 준 부분이 좋았다.
+    - Stream은 immutable data인데 반해 table은 mutable data이다.
+    - Stream-table duality는 event sourcing에서 말하는 개념 같았다.
+  - Streams and Tables in Apache Kafka 이 시리즈는 전부 읽어 보아야겠다.
+  - 100 days of code 과정을 통해 공부하는 동안 이벤트를 기반으로 한 아키텍처에 대해서도 많이 공부할 수 있을 것 같아 좋다.
