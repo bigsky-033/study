@@ -157,3 +157,12 @@
     - Stream-table duality는 event sourcing에서 말하는 개념 같았다.
   - Streams and Tables in Apache Kafka 이 시리즈는 전부 읽어 보아야겠다.
   - 100 days of code 과정을 통해 공부하는 동안 이벤트를 기반으로 한 아키텍처에 대해서도 많이 공부할 수 있을 것 같아 좋다.
+
+## Day 10 (20220623)
+
+- 공부한 자료
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/ksqldb/>
+  - <https://www.confluent.io/blog/how-real-time-stream-processing-safely-scales-with-ksqldb/>
+- 메모
+  - KsqlDB를 추상적으로 본다면 스트림 프로세싱 어플리케이션에 최적화된 database라고 할 수 있다. 사용자는 SQL로 원하는 동작을 정의할 수 있고 KsqlDB는 SQL을 바탕으로 이벤트 스트림을 계속해서 프로세싱한다. 그리고 어플리케이션은 KsqlDB의 결과를 가져다 쓸 수 있다.
+  - 물론 추상적으로 보았을 때 그렇다는 이야기이다. PostgreSQL 같은 RDB를 대체하기 위한 것은 아니다.
