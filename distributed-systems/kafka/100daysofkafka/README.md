@@ -167,3 +167,17 @@
   - KsqlDB를 추상적으로 본다면 스트림 프로세싱 어플리케이션에 최적화된 database라고 할 수 있다. 사용자는 SQL로 원하는 동작을 정의할 수 있고 KsqlDB는 SQL을 바탕으로 이벤트 스트림을 계속해서 프로세싱한다. 그리고 어플리케이션은 KsqlDB의 결과를 가져다 쓸 수 있다.
   - 물론 추상적으로 보았을 때 그렇다는 이야기이다. PostgreSQL 같은 RDB를 대체하기 위한 것은 아니다.
   - 두 번째 공부한 자료에 있는 How Real-Time Stream Processing Safely Scales with ksqlDB, Animated 글은 매우 흥미로웠다. 이를 통해 KsqlDB가 어떻게 동작하는지 직관적인 느낌을 받을 수 있었다. 그리고 Fault tolerance, High availability에 대한 부분의 글을 통해 많이 배웠다. 분산 시스템으로서 고민할만한 중요한 포인트들이 잘 설명되어 있어서 좋았다.
+
+## Day 11 (20220624)
+
+- 공부한 자료
+  - <https://developer.confluent.io/learn/kraft/>
+  - <https://www.confluent.io/blog/kafka-without-zookeeper-a-sneak-peek/#zookeeper-less-kafka>
+- 메모
+  - Apache Kafka Raft(KRaft)는 주키퍼를 사용하지 않고 카프카 자체적으로 메타 데이터를 관리할 수 있게 하기 위해 도입된 합의 프로토콜이다. 장점은 다음과 같은 것들이다:
+    - control plane의 성능 향상으로 카프카 클러스터가 더 많은 파티션을 관리할 수 있다.
+    - 카프카의 안정성을 높이고 소프트웨어를 단순하게 한다. 이로 인해 소프트웨어를 더 쉽게 관리할 수 있게 한다.
+    - 가벼운 하나의 프로세스로 카프카를 시작할 수 있다.
+    - 컨트롤러가 거의 즉시 failover 할 수 있게 한다.
+  - 소프트웨어 아키텍처의 단순화로 가져올 수 있는 좋은 점들을 볼 수 있는 것 같다.
+  - 내부적으로 event-sourced storage model을 사용한다.
