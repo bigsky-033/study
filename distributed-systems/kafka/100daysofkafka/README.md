@@ -166,3 +166,4 @@
 - 메모
   - KsqlDB를 추상적으로 본다면 스트림 프로세싱 어플리케이션에 최적화된 database라고 할 수 있다. 사용자는 SQL로 원하는 동작을 정의할 수 있고 KsqlDB는 SQL을 바탕으로 이벤트 스트림을 계속해서 프로세싱한다. 그리고 어플리케이션은 KsqlDB의 결과를 가져다 쓸 수 있다.
   - 물론 추상적으로 보았을 때 그렇다는 이야기이다. PostgreSQL 같은 RDB를 대체하기 위한 것은 아니다.
+  - 두 번째 공부한 자료에 있는 How Real-Time Stream Processing Safely Scales with ksqlDB, Animated 글은 매우 흥미로웠다. 이를 통해 KsqlDB가 어떻게 동작하는지 직관적인 느낌을 받을 수 있었다. 그리고 Fault tolerance, High availability에 대한 부분의 글을 통해 많이 배웠다. 분산 시스템으로서 고민할만한 중요한 포인트들이 잘 설명되어 있어서 좋았다.
