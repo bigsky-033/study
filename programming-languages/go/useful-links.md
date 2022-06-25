@@ -6,6 +6,9 @@
 - Golang: Don’t afraid of makefiles, <https://sohlich.github.io/post/go_makefile/>
 - Understanding Golang's Func Type, <https://www.integralist.co.uk/posts/understanding-golangs-func-type/>
 - Go언어에서 Context 사용하기, <https://jaehue.github.io/post/how-to-use-golang-context/>
+- Packages as layers, not groups, <https://www.gobeyond.dev/packages-as-layers/>
+- Go Proverbs, <https://go-proverbs.github.io/>
+- Practical go, <https://dave.cheney.net/practical-go>
 
 ## Libraries
 
