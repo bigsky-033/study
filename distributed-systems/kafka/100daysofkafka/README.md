@@ -181,3 +181,14 @@
     - 컨트롤러가 거의 즉시 failover 할 수 있게 한다.
   - 소프트웨어 아키텍처의 단순화로 가져올 수 있는 좋은 점들을 볼 수 있는 것 같다.
   - 내부적으로 event-sourced storage model을 사용한다.
+
+## Day 12 (20220625)
+
+- 공부한 자료
+  - <https://developer.confluent.io/get-started/go/>
+  - <https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka>
+- 정리한 내용
+  - `examples/golang/` 아래에 Getting Started with Apache Kafka and Go 의 예제를 넣어둠.
+- 메모
+  - 간단하게 튜토리얼만 해 본 수준이다. <https://github.com/confluentinc/confluent-kafka-go/tree/master/examples> 에 보면 다양한 예제가 많이 있는데 하나하나 읽어 보아야겠다.
+  - 잘 사용하려면 라이브러리의 특히 go document를 잘 읽어 보아야겠다.
