@@ -3,8 +3,11 @@ module github.com/bigsky-033/kafka-go-examples
 go 1.17
 
 require (
-	github.com/Shopify/sarama v1.34.1 // indirect
-	github.com/confluentinc/confluent-kafka-go v1.9.0 // indirect
+	github.com/Shopify/sarama v1.34.1
+	github.com/confluentinc/confluent-kafka-go v1.9.0
+)
+
+require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
