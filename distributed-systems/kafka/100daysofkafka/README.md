@@ -192,3 +192,13 @@
 - 메모
   - 간단하게 튜토리얼만 해 본 수준이다. <https://github.com/confluentinc/confluent-kafka-go/tree/master/examples> 에 보면 다양한 예제가 많이 있는데 하나하나 읽어 보아야겠다.
   - 잘 사용하려면 라이브러리의 특히 go document를 잘 읽어 보아야겠다.
+
+## Day 13 (20220626)
+
+- 공부한 자료
+  - <https://github.com/Shopify/sarama>
+  - <https://pkg.go.dev/github.com/Shopify/sarama>
+- 메모
+  - Go에서 널리 쓰이는 kafka 클라이언트 라이브러리인 sarama에 대해 알아보고 사용해 보았다.
+  - API가 뭔가 익숙하지 않았다. Github에 예제가 좀 더 있었으면 좋았을 것 같다.
+  - cgo 이슈가 아니라면 confluent-kafka-go를 사용할 것 같다.
