@@ -202,3 +202,14 @@
   - Go에서 널리 쓰이는 kafka 클라이언트 라이브러리인 sarama에 대해 알아보고 사용해 보았다.
   - API가 뭔가 익숙하지 않았다. Github에 예제가 좀 더 있었으면 좋았을 것 같다.
   - cgo 이슈가 아니라면 confluent-kafka-go를 사용할 것 같다.
+
+## Day 14 (20220628)
+
+- 공부한 자료
+  - <https://kafka.apache.org/documentation.html#design>
+  - <https://developer.ibm.com/articles/j-zerocopy/>
+- 메모
+  - sarama github을 보던 중 Kafka protocol 가이드 문서에 좋은 내용이 많다고 해서 훑어보려고 했다. 그런데 protocol 문서를 읽어보려고 하니 design 문서의 내용을 이해하고 있다고 가정한다고 한다. 그래서 design 문서를 먼저 읽기로 했다.
+  - 4.1 Motivation, 4.2 Persistence, 4.3 Efficiency 를 읽었다. 내용이 상당히 많았지만 하나하나 중요한 내용들이었다. 디스크에 쓰는 것을 어떻게 최적화했는지, 왜 카프카가 디스크에 쓰는 데도 느리지 않은지를 설명하고 있다. 효율을 위한 제로카피, 압축, 배치 처리 등도 인상깊었다.
+    - 사실 잘 이해하지 못 한 부분이 많이 있다. 이 DESIGN 문서들은 여러 번 읽어 보아야겠다.
+    - 글에서 소개해 주는 아티클들도 내용이 매우 좋다.
