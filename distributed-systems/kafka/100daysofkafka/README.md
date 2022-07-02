@@ -239,3 +239,13 @@
 - 메모
   - 디자인 문서의 나머지 내용은 카프카 내부를 상세히 공부하는 단계에서 읽어보기로 했다.
   - 심플한 코틀린 어플리케이션 예제를 하나 만들었다. 카프카를 띄우는 설정은 [docmer-compose](docker-compose.simple.yaml) 파일을 사용했다.
+
+## Day 17 (20220702)
+
+- 공부한 자료
+  - <https://developer.confluent.io/tutorials/kafka-producer-callback-application/kafka.html>
+- 정리한 내용
+  - `examples/jvm/` 아래에 How to build an Apache KafkaProducer application with callbacks 의 예제를 넣어둠.
+- 메모
+  - 예제를 따라해 보았다.
+  - 테스트 예제에 있는 MockProducer가 새로웠고 유용할 것 같다.
