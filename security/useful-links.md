@@ -9,6 +9,7 @@
 - OpenID Connect explained, <https://connect2id.com/learn/openid-connect>
 - OAuth.com <https://www.oauth.com/>
 - The Nuts and Bolts of OAuth 2.0 <https://www.udemy.com/course/oauth-2-simplified/>
+  - OAuth School <https://oauth.school/>
 
 ## TLS
 
