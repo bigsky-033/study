@@ -188,7 +188,7 @@
   - <https://developer.confluent.io/get-started/go/>
   - <https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka>
 - 정리한 내용
-  - `examples/golang/` 아래에 Getting Started with Apache Kafka and Go 의 예제를 넣어둠.
+  - `/example/kafka-examples/golang/` 아래에 Getting Started with Apache Kafka and Go 의 예제를 넣어둠.
 - 메모
   - 간단하게 튜토리얼만 해 본 수준이다. <https://github.com/confluentinc/confluent-kafka-go/tree/master/examples> 에 보면 다양한 예제가 많이 있는데 하나하나 읽어 보아야겠다.
   - 잘 사용하려면 라이브러리의 특히 go document를 잘 읽어 보아야겠다.
@@ -235,17 +235,17 @@
 - 공부한 자료
   - <https://developer.confluent.io/tutorials/creating-first-apache-kafka-producer-application/kafka.html>
 - 정리한 내용
-  - `examples/jvm/` 아래에 How to build your first Apache KafkaProducer application 의 예제를 넣어둠.
+  - `/example/kafka-examples/jvm/` 아래에 How to build your first Apache KafkaProducer application 의 예제를 넣어둠.
 - 메모
   - 디자인 문서의 나머지 내용은 카프카 내부를 상세히 공부하는 단계에서 읽어보기로 했다.
-  - 심플한 코틀린 어플리케이션 예제를 하나 만들었다. 카프카를 띄우는 설정은 [docmer-compose](docker-compose.simple.yaml) 파일을 사용했다.
+  - 심플한 코틀린 어플리케이션 예제를 하나 만들었다. 카프카를 띄우는 설정은 [docker-compose](/example/kafka-examples/docker-compose.yaml) 파일을 사용했다.
 
 ## Day 17 (20220702)
 
 - 공부한 자료
   - <https://developer.confluent.io/tutorials/kafka-producer-callback-application/kafka.html>
 - 정리한 내용
-  - `examples/jvm/` 아래에 How to build an Apache KafkaProducer application with callbacks 의 예제를 넣어둠.
+  - `/example/kafka-examples/jvm/` 아래에 How to build an Apache KafkaProducer application with callbacks 의 예제를 넣어둠.
 - 메모
   - 예제를 따라해 보았다.
   - 테스트 예제에 있는 MockProducer가 새로웠고 유용할 것 같다.
