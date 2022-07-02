@@ -1,23 +1,13 @@
 package bigsky033.simpleproducer
 
+import bigsky033.loadProperties
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.Producer
 import org.apache.kafka.clients.producer.RecordMetadata
-import java.io.FileInputStream
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.Properties
 import java.util.concurrent.Future
 
-fun loadProperties(fileName: String): Properties {
-    val envProps = Properties()
-
-    val input = FileInputStream(fileName)
-    envProps.load(input)
-    input.close()
-
-    return envProps
-}
 
 fun printMetadata(
     metadata: List<Future<RecordMetadata>>,
@@ -46,7 +36,7 @@ fun main() {
         .filter { it.trim().isNotEmpty() }
         .map { simpleKafkaProducer.produce(it) }
         .toList()
-    println("HI")
+
     printMetadata(metadata, dataFilePath)
 
     producer.close()
