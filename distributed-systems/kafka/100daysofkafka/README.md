@@ -249,3 +249,13 @@
 - 메모
   - 예제를 따라해 보았다.
   - 테스트 예제에 있는 MockProducer가 새로웠고 유용할 것 같다.
+
+## Day 18 (20220703)
+
+- 공부한 자료
+  - <https://developer.confluent.io/tutorials/creating-first-apache-kafka-consumer-application/kafka.html>
+- 정리한 내용
+  - `/example/kafka-examples/jvm/` 아래에 How to build your first Apache KafkaConsumer application 의 예제를 넣어둠.
+- 메모
+  - 에제를 따라해 보았다.
+  - 이번에는 MockConsumer를 활용해서 테스트 코드도 만들어 보았다. 매우 유용할듯 싶다.
