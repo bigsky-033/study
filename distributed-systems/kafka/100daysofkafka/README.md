@@ -259,3 +259,12 @@
 - 메모
   - 에제를 따라해 보았다.
   - 이번에는 MockConsumer를 활용해서 테스트 코드도 만들어 보았다. 매우 유용할듯 싶다.
+
+## Day 19 (20220704)
+
+- 공부한 자료
+  - <https://developer.confluent.io/get-started/spring-boot/>
+- 정리한 내용
+  - `/example/kafka-examples/spring/` 아래에 Getting Started with Apache Kafka and Spring Boot 의 예제를 넣어둠.
+- 메모
+  - 간단한 스프링 예제여서 어려움은 없었다. 그런데 @Configuration 도 없이 동작하는 걸 보니 조금 더 자세한 이해가 필요하다고 생각했다.
