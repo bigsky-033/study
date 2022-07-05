@@ -268,3 +268,11 @@
   - `/example/kafka-examples/spring/` 아래에 Getting Started with Apache Kafka and Spring Boot 의 예제를 넣어둠.
 - 메모
   - 간단한 스프링 예제여서 어려움은 없었다. 그런데 @Configuration 도 없이 동작하는 걸 보니 조금 더 자세한 이해가 필요하다고 생각했다.
+
+## Day 20 (20220705)
+
+- 공부한 자료
+  - <https://developer.confluent.io/get-started/c/>
+- 메모
+  - 예제를 따라하기 위해 librdkafka, glibc 와 같은 것들을 WSL 환경에 설치하고 따라해 보았는데 컴파일에 실패했다. 컴파일을 성공하게 하기 위해 이런저런 방법을 찾아보았지만 c에 대한 지식이 부족해서 성공하지 못 하였다. 그래서 그냥 코드를 읽어보는 수준에서 만족하고 다음에 c를 더 공부하고 와서 다시 시도해 보기로 하였다.
+  - 바로 직전에 java, spring의 예제를 보다가 c로 짜여진 예제를 보니 확실히 저수준의 코드라는 느낌이 났다. 공부할 때는 이런저런 동작을 더 깊이 알 수 있어서 좋을 것 같긴 한데 프로덕션에서 사용할 일은 없을 것 같다.
