@@ -284,3 +284,10 @@
   - <https://youtu.be/4Hz46hmwXM4>
 - 메모
   - 간단히 카프카 cli를 이용해 메세지를 프로듀싱하고 컨슈밍해 보는 예제들이었다. 특별한 내용은 없었다.
+
+## Day 22 (20220708)
+
+- 공부한 자료
+  - <https://developer.confluent.io/tutorials/kafka-console-consumer-producer-avro/kafka.html>
+- 메모
+  - 카프카 cli 기초 이후에 schema registry를 이용해 (de)serializers를 이용하는 예제들을 보았다. 특별한 내용은 없었다.
