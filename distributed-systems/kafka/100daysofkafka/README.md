@@ -291,3 +291,10 @@
   - <https://developer.confluent.io/tutorials/kafka-console-consumer-producer-avro/kafka.html>
 - 메모
   - 카프카 cli 기초 이후에 schema registry를 이용해 (de)serializers를 이용하는 예제들을 보았다. 특별한 내용은 없었다.
+
+## Day 23 (20220709)
+
+- 공부한 자료
+  - <https://developer.confluent.io/tutorials/kafka-console-consumer-read-specific-offsets-partitions/kafka.html>
+- 메모
+  - 카프카 cli 를 다루는 것의 연장선이었다. 특정 오프셋을 입력으로 주고 거기서부터 메세지를 읽어오는 것을 해보았다. 특별한 내용은 없었다.
