@@ -298,3 +298,16 @@
   - <https://developer.confluent.io/tutorials/kafka-console-consumer-read-specific-offsets-partitions/kafka.html>
 - 메모
   - 카프카 cli 를 다루는 것의 연장선이었다. 특정 오프셋을 입력으로 주고 거기서부터 메세지를 읽어오는 것을 해보았다. 특별한 내용은 없었다.
+
+## Day 24 (20220710)
+
+- 공부한 자료
+  - <https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/kcat.html>
+  - <https://github.com/edenhill/kcat>
+  - <https://dev.to/de_maric/learn-how-to-use-kafkacat-the-most-versatile-kafka-cli-client-1kb4>
+- 메모
+  - confluent 문서에 있는 내용은 그다지 도움되지 않았다.
+  - apt로 설치했을 때 kcat이라는 이름으로 어플리케이션을 실행할 수는 없었다. kafkacat 로 실행해야 했다.
+  - 세 번쨰로 첨부한 블로그의 글이 좋다. cheatsheet 느낌이다. 이 예는 useful-links 에 넣어두고 필요할 때 사용해 보아야겠다.
+  - 프로듀서보다는 컨슈머로 사용할 때 도움이 많이 될 것 같다.
+  - 간단하게 클러스터와 토픽의 메타데이터를 조회할 수 있는 기능도 좋았다.
