@@ -311,3 +311,12 @@
   - 세 번쨰로 첨부한 블로그의 글이 좋다. cheatsheet 느낌이다. 이 예는 useful-links 에 넣어두고 필요할 때 사용해 보아야겠다.
   - 프로듀서보다는 컨슈머로 사용할 때 도움이 많이 될 것 같다.
   - 간단하게 클러스터와 토픽의 메타데이터를 조회할 수 있는 기능도 좋았다.
+
+## Day 25 (20220714)
+
+- 공부한 자료
+  - <https://docs.confluent.io/platform/current/kafka-rest/index.html>
+- 메모
+  - 카프카 Rest Proxy라는 주제에 대해 간단히 알아보았다. 100 Days of Code with Apache Kafka® 에 있는 Day 25 링크는 동작하지 않는다.
+  - Rest Proxy는 카프카 cli나 sdk등을 통해 카프카 프로토콜로 통신하는 게 아니라, Rest API와 같은 인터페이스를 통해 카프카를 사용할 수 있게 해주는 서비스이다.
+    - Metadata, Producers, Consumers, Cluster & Load Balancing, Admin operations 등 메세지를 produce/consume 할 수 있고 또한 클러스터의 상태를 보거나 변경하는 등의 액션을 할 수 있다.
