@@ -26,15 +26,15 @@ func Test_runningSum(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		t.Run(test.name, func (t2 *testing.T)  {
+		t.Run(test.name, func (t *testing.T)  {
 			actual := runningSum(test.input)
 
 			if len(actual) != len(test.output) {
-				t2.Fatalf("actual length: %d expected length: %d", len(actual), len(test.output))
+				t.Fatalf("actual length: %d expected length: %d", len(actual), len(test.output))
 			}
 			for i := 0; i < len(actual); i++ {
 				if actual[i] != test.output[i] {
-					t2.Fatalf("value is not matched. actual[%d]: %d, expected[%d]: %d\n", i, actual[i], i, test.output[i])
+					t.Fatalf("value is not matched. actual[%d]: %d, expected[%d]: %d\n", i, actual[i], i, test.output[i])
 				}
 			}
 		})
