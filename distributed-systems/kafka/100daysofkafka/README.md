@@ -320,3 +320,14 @@
   - 카프카 Rest Proxy라는 주제에 대해 간단히 알아보았다. 100 Days of Code with Apache Kafka® 에 있는 Day 25 링크는 동작하지 않는다.
   - Rest Proxy는 카프카 cli나 sdk등을 통해 카프카 프로토콜로 통신하는 게 아니라, Rest API와 같은 인터페이스를 통해 카프카를 사용할 수 있게 해주는 서비스이다.
     - Metadata, Producers, Consumers, Cluster & Load Balancing, Admin operations 등 메세지를 produce/consume 할 수 있고 또한 클러스터의 상태를 보거나 변경하는 등의 액션을 할 수 있다.
+
+## Day 26 (20220716)
+
+- 공부한 자료
+  - <https://developer.confluent.io/learn-kafka/apache-kafka/schema-registry/>
+  - <https://docs.confluent.io/platform/current/schema-registry/index.html>
+- 메모
+  - Schema registry에 대해 간략히 소개해 주는 자료들이었다.
+  - 영상을 보며 Schema registry의 필요성에 대해서 공감했고 이게 있으면 많은 일이 간단해 질 것이라고 생각한다.
+  - 내부 구현에 있어 Kafka를 스토리지 백엔드로 사용하는 점이 흥미로웠다.
+  - 이 내용은 confluent cloud를 이용해서 튜토리얼을 진행해 보아야겠다고 생각했다.
