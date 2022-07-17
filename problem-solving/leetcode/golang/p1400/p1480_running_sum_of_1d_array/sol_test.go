@@ -1,6 +1,9 @@
 package p1480runningsumof1darray
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func Test_runningSum(t *testing.T) {
 	tests := []struct {
@@ -29,13 +32,8 @@ func Test_runningSum(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			actual := runningSum(test.input)
 
-			if len(actual) != len(test.output) {
-				t.Fatalf("actual length: %d expected length: %d", len(actual), len(test.output))
-			}
-			for i := 0; i < len(actual); i++ {
-				if actual[i] != test.output[i] {
-					t.Fatalf("value is not matched. actual[%d]: %d, expected[%d]: %d\n", i, actual[i], i, test.output[i])
-				}
+			if !reflect.DeepEqual(test.output, actual) {
+				t.Errorf("value is not matched. expected: %v actual: %v", test.output, actual)
 			}
 		})
 	}

@@ -29,7 +29,7 @@ func Test_maximumWealth(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			actual := maximumWealth(test.input)
 
-			if actual != test.output {
+			if test.output != actual {
 				t.Errorf("value is not matched. expected: %d actual: %d",
 					test.output, actual)
 			}
