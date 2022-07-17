@@ -9,6 +9,7 @@
 - Packages as layers, not groups, <https://www.gobeyond.dev/packages-as-layers/>
 - Go Proverbs, <https://go-proverbs.github.io/>
 - Practical go, <https://dave.cheney.net/practical-go>
+- A Guide to the Go Garbage Collector, <https://tip.golang.org/doc/gc-guide>
 
 ## Libraries
 
