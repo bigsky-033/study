@@ -339,3 +339,13 @@
 - 메모
   - avro에 대한 소개 그리고 데이터를 다루는 데 있어 schema가 있는 것의 장점을 논하는 글이다. Robustness, Clarity and Semantics, Compatibility Schemas are a Conversation, Schemas Eliminate The Manual Labor of Data Science 등을 장점으로 꼽으며 이야기한다. 전적으로 동의한다. Schema가 있는 장점은, serde 에서 효율적인 것도 있지만 여기에서 주로 이야기하는 데이터 퀄리티 및 정책과 관련된 부분에서 오는 게 더 크다고 생각한다. 이런 부분에 있어서 굉장히 잘 설명한 글이라고 생각하고 나중에 이런 주제를 논할 때 근거 자료로 언급하고 싶은 글이다.
   - binary format의 데이터를 정의하고 serde를 하기 위한 도구로 avro와 함께 언급되는 것으로 protobuf가 있다. 깃헙 star-history를 이용해 protobuf와 avro를 비교해보면 protobuf의 인기가 월등하다. avro의 장점에 대해서는 공감하지만 지금 시점에 둘 중 하나를 골라야 한다면 protobuf 를 고를 것 같다.
+
+## Day 28 (20220725)
+
+- 공부한 자료
+  - <https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/java.html?&_ga=2.100125854.1608897575.1658755782-454449210.1645015938#avro-and-confluent-cloud-schema-registry>
+  - <https://github.com/confluentinc/examples/blob/7.2.1-post/clients/cloud/java/src/main/java/io/confluent/examples/clients/cloud/ProducerAvroExample.java>
+  - <https://github.com/confluentinc/examples/blob/7.2.1-post/clients/cloud/java/src/main/java/io/confluent/examples/clients/cloud/ConsumerAvroExample.java>
+- 메모
+  - `gitub.com/confluentinc/examples` 에 좋은 예제가 많은 것 같다.
+  - 예제 파일들이 모여있는 깃헙에서 Producer, Consumer 예를 보았다. Avro를 이용해 데이터를 serde 하는 데 엄청 특별한 게 필요하거나 코드가 많이 변하진 않았다. 그런데 그걸로 얻는 효과는 커 보인다. 좋은 인상을 받았다.
