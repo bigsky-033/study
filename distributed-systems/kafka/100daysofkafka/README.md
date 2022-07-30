@@ -349,3 +349,14 @@
 - 메모
   - `gitub.com/confluentinc/examples` 에 좋은 예제가 많은 것 같다.
   - 예제 파일들이 모여있는 깃헙에서 Producer, Consumer 예를 보았다. Avro를 이용해 데이터를 serde 하는 데 엄청 특별한 게 필요하거나 코드가 많이 변하진 않았다. 그런데 그걸로 얻는 효과는 커 보인다. 좋은 인상을 받았다.
+
+## Day 29 (20220730)
+
+- 공부한 자료
+  - <https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/python.html#avro-and-confluent-cloud-schema-registry>
+  - <https://docs.confluent.io/5.5.0/quickstart/ce-quickstart.html>
+- 메모
+  - 파이썬 예제 코드들을 읽어 보았다. 특별히 메모할 부분은 없었다.
+  - 예제 코드들을 실행해 보기 위해 confluent platform(local)을 설치해 보았다. 이 때 까지 이걸 활용하지 않은 게 아쉬웠다. 이 도구를 설치하고 활용하면 한 번의 커맨드 입력으로 confluent platform을 로컬에 전부 실행시킬 수 있었다. 이 때까지 conflunet platform을 활용하는 실습들은 건너뛴 것들이 있었는데 이걸 활용하면 쉽게 할 수 있는 것들 이었다. 앞으로 이걸 더 많이, 잘 활용해 보아야겠다.
+    - 상태도 저장된다.
+    - sdkman으로 설치한 자바 버전이 여러 개라 JAVA_HOME이 제대로 설정되어 있지 않으면 카프카를 실행하다가 에러가 발생한다. `sdk use java 11.0.14.10.1-amzn` 이런식으로 하면 JAVA_HOME이 설정되고, 이 이후에 `confluent local services start` 를 하면 된다.
