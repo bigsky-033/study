@@ -360,3 +360,11 @@
   - 예제 코드들을 실행해 보기 위해 confluent platform(local)을 설치해 보았다. 이 때 까지 이걸 활용하지 않은 게 아쉬웠다. 이 도구를 설치하고 활용하면 한 번의 커맨드 입력으로 confluent platform을 로컬에 전부 실행시킬 수 있었다. 이 때까지 conflunet platform을 활용하는 실습들은 건너뛴 것들이 있었는데 이걸 활용하면 쉽게 할 수 있는 것들 이었다. 앞으로 이걸 더 많이, 잘 활용해 보아야겠다.
     - 상태도 저장된다.
     - sdkman으로 설치한 자바 버전이 여러 개라 JAVA_HOME이 제대로 설정되어 있지 않으면 카프카를 실행하다가 에러가 발생한다. `sdk use java 11.0.14.10.1-amzn` 이런식으로 하면 JAVA_HOME이 설정되고, 이 이후에 `confluent local services start` 를 하면 된다.
+
+## Day 30 (20220731)
+
+- 공부한 자료
+  - <https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/rest-proxy.html#avro-and-confluent-cloud-schema-registry>
+- 메모
+  - confluent platform(local)을 이용해 예제들을 실습해 보았다. Rest Proxy 실습은 이전에 하지 못 했던 것이라 Rest Proxy 실습 겸 이것저것 더 해보았다.
+  - 특별한 사항이나 어려운 사항은 없었다.
