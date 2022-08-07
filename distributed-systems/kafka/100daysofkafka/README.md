@@ -368,3 +368,11 @@
 - 메모
   - confluent platform(local)을 이용해 예제들을 실습해 보았다. Rest Proxy 실습은 이전에 하지 못 했던 것이라 Rest Proxy 실습 겸 이것저것 더 해보았다.
   - 특별한 사항이나 어려운 사항은 없었다.
+
+## Day 31 (20220807)
+
+- 공부한 자료
+  - <https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/java-springboot.html#avro-and-confluent-cloud-schema-registry>
+- 메모
+  - confluent platform(local)을 이용해 예제들을 실습해 보았다.
+  - spring kafka는 사용해 본 적이 있었기 때문에 특별한 사항이나 어려운 사항은 없었다.
