@@ -376,3 +376,11 @@
 - 메모
   - confluent platform(local)을 이용해 예제들을 실습해 보았다.
   - spring kafka는 사용해 본 적이 있었기 때문에 특별한 사항이나 어려운 사항은 없었다.
+
+## Day 32 (20220813)
+
+- 공부한 자료
+  - <https://www.confluent.io/blog/using-protobuf-in-confluent-cloud>
+- 메모
+  - 주로 confluent cloud를 이용하는 내용이었다. 거기서 kafka로 데이터를 produce하고 consume할 때 protobuf를 이용해 value를 serde 하는 예제가 담겨 있는 글이다.
+  - Schema lifecycle management 라고 해서, schema registry를 이용해 protobuf 파일들을 관리하고 손쉽게 내려받을 수 있는 기능을 제공하는 게 눈길이 갔다.
