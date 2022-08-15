@@ -384,3 +384,11 @@
 - 메모
   - 주로 confluent cloud를 이용하는 내용이었다. 거기서 kafka로 데이터를 produce하고 consume할 때 protobuf를 이용해 value를 serde 하는 예제가 담겨 있는 글이다.
   - Schema lifecycle management 라고 해서, schema registry를 이용해 protobuf 파일들을 관리하고 손쉽게 내려받을 수 있는 기능을 제공하는 게 눈길이 갔다.
+
+## Day 33 (20220816)
+
+- 공부한 자료
+  - <https://docs.confluent.io/cloud/current/sr/broker-side-schema-validation.html>
+- 메모
+  - Kafka Broker에서 schema validation을 하는 예이다. Broker side에서 schema validation을 키고 끄는 방법(CLI, Console)을 설명하고 간단한 예를 보여준다.
+  - 동작을 간단히 설명하면, 브로커에 설정이 켜져 있다면 프로듀싱 된 메세지는 항상 연관된 스키마의 ID를 갖고 있어야 한다. 그리고 그 스키마는 토픽과 매칭되어야 한다. 이걸 바탕으로 브로커는 validation을 하고 실패한 메세지는 버려진다.
